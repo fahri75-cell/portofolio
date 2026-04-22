@@ -1,26 +1,219 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio Saya</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio Fahri</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
 </head>
 <body>
-  <header>
-    <h1>Portfolio Saya</h1>
-    <p>Halo, saya sedang belajar membuat website portfolio.</p>
+  <header class="header">
+    <div class="container nav">
+      <a href="#home" class="logo">Fahri<span>.</span></a>
+
+      <nav class="navbar" id="navbar">
+        <a href="#home">Fahri Saputra</a>
+        <a href="#about">Bukan yang paling keras suaranya, tapi selalu punya cara untuk didengar. Bukan yang paling cepat, tapi tahu kapan harus melangkah dan kapan harus berhenti.
+
+Saya terbiasa membangun dari nol—mengubah ide sederhana jadi sesuatu yang punya arti. Penasaran adalah bahan bakar utama, dan konsistensi adalah senjata yang jarang terlihat tapi selalu bekerja. Saya percaya, hal besar bukan datang dari keberuntungan semata, tapi dari keputusan kecil yang diulang setiap hari.
+
+Tenang di luar, penuh strategi di dalam. Tidak banyak bicara, tapi sekali bergerak, arahnya jelas.
+
+Masih terus berkembang. Masih terus belajar. Tapi satu hal pasti: saya tidak berjalan tanpa tujuan.
+</a>
+        <a href="#skills">💻 **Programming Skills**
+
+• Mampu mengubah ide kompleks menjadi solusi digital yang efisien dan scalable
+• Terbiasa bekerja dengan logika terstruktur, clean code, dan arsitektur yang rapi
+• Menguasai dasar hingga lanjutan dalam pengembangan aplikasi (frontend & backend)
+• Adaptif terhadap berbagai bahasa pemrograman dan cepat mempelajari teknologi baru
+• Terbiasa melakukan debugging dan problem solving dengan pendekatan analitis
+• Memahami konsep database, API, dan integrasi sistem secara menyeluruh
+• Fokus pada performa, keamanan, dan pengalaman pengguna
+• Terbiasa bekerja secara mandiri maupun dalam tim kolaboratif (version control, workflow)
+
+🚀 “Code bukan sekadar barisan sintaks, tapi cara saya membangun solusi nyata.”
+</a>
+        <a href="#projects">🚀 **Projects**
+
+• Task Manager App – produktivitas dengan fitur cerdas
+• E-Commerce Web – sistem jual beli lengkap & responsif
+• REST API – scalable & terstruktur
+• Portfolio Website – modern & interaktif
+• Data Dashboard – visualisasi data yang informatif
+
+🔥 “Build simple, think big.”
+</a>
+        <a href="#contact">081376709008</a>
+      </nav>
+
+      <button class="menu-toggle" id="menu-toggle">☰</button>
+    </div>
   </header>
 
-  <section>
-    <h2>Tentang Saya</h2>
-    <p>Saya tertarik di bidang web development dan desain.</p>
-  </section>
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <p class="hero-tag">PORTFOLIO WEBSITE</p>
+          <h1>Halo, Saya <span>Fahri</span></h1>
+          <h2 id="typing-text">Frontend Developer</h2>
+          <p class="hero-desc">
+            Saya membuat tampilan website yang modern, rapi, elegan, dan nyaman
+            dilihat. Saya juga terus belajar mengembangkan skill di bidang web
+            development dan desain antarmuka.
+          </p>
 
-  <section>
-    <h2>Project</h2>
-    <p>Nanti isi project kamu di sini.</p>
-  </section>
+          <div class="hero-buttons">
+            <a href="#projects" class="btn btn-primary">Lihat Project</a>
+            <a href="#contact" class="btn btn-secondary">Hubungi Saya</a>
+          </div>
+
+          <div class="hero-info">
+            <div class="info-box">
+              <h3>1+</h3>
+              <p>Tahun Belajar</p>
+            </div>
+            <div class="info-box">
+              <h3>10+</h3>
+              <p>Mini Project</p>
+            </div>
+            <div class="info-box">
+              <h3>100%</h3>
+              <p>Semangat</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-image">
+          <div class="image-wrapper">
+            <!-- Ganti src dengan nama file foto kamu -->
+            <img src="profile.jpg" alt="Foto Profil Fahri" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-title">
+          <p>TENTANG SAYA</p>
+          <h2>Kenalan Singkat</h2>
+        </div>
+
+        <div class="about-card">
+          <p>
+            Saya adalah seorang yang tertarik pada teknologi, desain, dan
+            pengembangan website. Saya senang membuat tampilan web yang clean,
+            responsive, dan premium. Website ini saya buat sebagai tempat untuk
+            menampilkan skill, project, dan informasi tentang diri saya.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section-title">
+          <p>SKILL</p>
+          <h2>Kemampuan Saya</h2>
+        </div>
+
+        <div class="skills-grid">
+          <div class="skill-card">
+            <h3>HTML</h3>
+            <p>Membuat struktur website yang rapi dan terorganisir.</p>
+          </div>
+          <div class="skill-card">
+            <h3>CSS</h3>
+            <p>Mendesain tampilan modern, premium, dan responsive.</p>
+          </div>
+          <div class="skill-card">
+            <h3>JavaScript</h3>
+            <p>Menambahkan interaksi agar website lebih hidup.</p>
+          </div>
+          <div class="skill-card">
+            <h3>GitHub</h3>
+            <p>Menyimpan dan mengelola project secara online.</p>
+          </div>
+          <div class="skill-card">
+            <h3>UI Design</h3>
+            <p>Membuat tampilan antarmuka yang enak dipandang.</p>
+          </div>
+          <div class="skill-card">
+            <h3>Responsive Web</h3>
+            <p>Website tetap bagus di HP, tablet, dan laptop.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-title">
+          <p>PROJECT</p>
+          <h2>Beberapa Karya Saya</h2>
+        </div>
+
+        <div class="projects-grid">
+          <div class="project-card">
+            <div class="project-top"></div>
+            <h3>Portfolio Website</h3>
+            <p>
+              Website portfolio modern dengan nuansa gelap premium dan layout
+              profesional.
+            </p>
+          </div>
+
+          <div class="project-card">
+            <div class="project-top"></div>
+            <h3>Landing Page</h3>
+            <p>
+              Tampilan landing page yang difokuskan pada desain elegan dan
+              menarik perhatian.
+            </p>
+          </div>
+
+          <div class="project-card">
+            <div class="project-top"></div>
+            <h3>UI Exploration</h3>
+            <p>
+              Kumpulan latihan desain antarmuka yang clean, futuristik, dan
+              minimalis.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-title">
+          <p>KONTAK</p>
+          <h2>Hubungi Saya</h2>
+        </div>
+
+        <div class="contact-card">
+          <p><strong>Email:</strong> emailkamu@example.com</p>
+          <p><strong>Instagram:</strong> @usernamekamu</p>
+          <p><strong>GitHub:</strong> github.com/fahri75-cell</p>
+          <p><strong>WhatsApp:</strong> 08xxxxxxxxxx</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 Fahri Portfolio. All rights reserved.</p>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>
