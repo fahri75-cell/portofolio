@@ -4,52 +4,46 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fahri | Premium Portfolio</title>
-  <meta name="description" content="Portfolio premium Fahri, web developer pemula dengan tampilan modern dan elegan." />
+  <meta name="description" content="Portfolio premium Fahri dengan tampilan modern, elegan, dan responsif." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap"
     rel="stylesheet"
   />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="bg-blur blur-1"></div>
-  <div class="bg-blur blur-2"></div>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
   <div class="bg-grid"></div>
 
-  <header class="header">
+  <header class="header" id="header">
     <div class="container nav">
       <a href="#home" class="logo">Fahri<span>Dev</span></a>
 
       <nav class="navbar" id="navbar">
-        <a href="#home">Fahri Saputra</a>
-        <a href="#about">Bukan yang paling keras suaranya, tapi selalu punya cara untuk didengar. Bukan yang paling cepat, tapi tahu kapan harus melangkah dan kapan harus berhenti.</a>
-        <a href="#skills">Mampu mengubah ide kompleks menjadi solusi digital yang efisien dan scalable
-• Terbiasa bekerja dengan logika terstruktur, clean code, dan arsitektur yang rapi
-• Menguasai dasar hingga lanjutan dalam pengembangan aplikasi (frontend & backend)
-• Adaptif terhadap berbagai bahasa pemrograman dan cepat mempelajari teknologi baru</a>
-        <a href="#projects">E-Commerce Mini Platform
-Membangun platform jual beli berbasis web dengan sistem autentikasi, keranjang belanja, dan integrasi pembayaran. Fokus pada performa dan user experience.
-        Personal Portfolio Website
-Website interaktif sebagai representasi diri, menampilkan skill, pengalaman, dan karya dengan desain modern dan responsif.</a>
+        <a href="#home">home Fahri Saputra</a>
+        <a href="#about">tentang Saya percaya, hal besar bukan datang dari keberuntungan semata, tapi dari keputusan kecil yang diulang setiap hari.</a>
+        <a href="#skills">Skill Mampu mengubah ide kompleks menjadi solusi digital yang efisien dan scalable
+Terbiasa bekerja dengan logika terstruktur, clean code, dan arsitektur yang rapi
+Menguasai dasar hingga lanjutan dalam pengembangan aplikasi (frontend & backend)</a>
+        <a href="#projects">Project Website interaktif sebagai representasi diri, menampilkan skill, pengalaman, dan karya dengan desain modern dan responsif.</a>
         <a href="#contact">Kontak</a>
       </nav>
 
-      <button class="menu-toggle" id="menu-toggle" aria-label="Buka menu">
-        ☰
-      </button>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Buka menu">☰</button>
     </div>
   </header>
 
   <main>
     <section class="hero section" id="home">
-      <div class="container hero-grid">
-        <div class="hero-text reveal">
+      <div class="container hero-layout">
+        <div class="hero-content reveal">
           <p class="eyebrow">PREMIUM PORTFOLIO</p>
           <h1>
-            Halo, Saya <span>Fahri</span><br />
-            <span class="light-text">Membangun tampilan web yang modern.</span>
+            Halo, Saya <span>Fahri Saputra</span><br />
+            Membangun tampilan web yang <span class="gradient-text">modern, bersih, dan mewah</span>.
           </h1>
 
           <h2 class="typing-line">
@@ -57,55 +51,56 @@ Website interaktif sebagai representasi diri, menampilkan skill, pengalaman, dan
           </h2>
 
           <p class="hero-desc">
-            Saya fokus pada pembuatan website yang clean, elegan, responsive,
-            dan nyaman dilihat. Portfolio ini menjadi tempat saya menampilkan
-            skill, project, dan perjalanan belajar saya di dunia web development.
+            Saya fokus membuat website yang responsive, nyaman dilihat, dan punya
+            nuansa profesional. Portfolio ini saya buat untuk menampilkan skill,
+            project, dan perjalanan belajar saya di dunia pengembangan web.
           </p>
 
           <div class="hero-buttons">
             <a href="#projects" class="btn btn-primary">Lihat Project</a>
             <a href="#contact" class="btn btn-secondary">Hubungi Saya</a>
-            <a href="cv-fahri.pdf" class="btn btn-outline" download>Download CV</a>
+            <a href="#" class="btn btn-outline">Download CV</a>
           </div>
 
-          <div class="social-links">
+          <div class="hero-social">
             <a href="https://github.com/fahri75-cell" target="_blank">GitHub</a>
             <a href="#" target="_blank">Instagram</a>
             <a href="#" target="_blank">LinkedIn</a>
             <a href="#" target="_blank">WhatsApp</a>
           </div>
-
-          <div class="stats-grid">
-            <div class="stat-card">
-              <h3>10+</h3>
-              <p>Mini Project</p>
-            </div>
-            <div class="stat-card">
-              <h3>1+</h3>
-              <p>Tahun Belajar</p>
-            </div>
-            <div class="stat-card">
-              <h3>100%</h3>
-              <p>Komitmen</p>
-            </div>
-          </div>
         </div>
 
-        <div class="hero-visual reveal">
-          <div class="profile-shell">
-            <div class="glow-ring"></div>
-            <div class="profile-card">
-              <img src="profile.jpg" alt="Foto Profil Fahri" />
+        <div class="hero-panel reveal">
+          <div class="glass-card big-card">
+            <p class="card-label">Tentang Saya</p>
+            <h3>Frontend learner dengan fokus pada tampilan modern.</h3>
+            <p>
+              Bukan yang paling keras suaranya, tapi selalu punya cara untuk
+              didengar. Bukan yang paling cepat, tapi tahu kapan harus melangkah
+              dan kapan harus berhenti.
+            </p>
+          </div>
+
+          <div class="mini-grid">
+            <div class="glass-card mini-card">
+              <p class="card-label">Keunggulan</p>
+              <h4>Clean Code</h4>
+              <p>Struktur rapi, mudah dibaca, dan enak dikembangkan.</p>
             </div>
-            <div class="floating-card float-1">
-              <span>UI Design</span>
+
+            <div class="glass-card mini-card">
+              <p class="card-label">Mindset</p>
+              <h4>Adaptif</h4>
+              <p>Cepat belajar dan menyesuaikan diri dengan teknologi baru.</p>
             </div>
-            <div class="floating-card float-2">
-              <span>Frontend</span>
-            </div>
-            <div class="floating-card float-3">
-              <span>Responsive</span>
-            </div>
+          </div>
+
+          <div class="glass-card ticker-card">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+            <span>Responsive</span>
+            <span>GitHub</span>
           </div>
         </div>
       </div>
@@ -114,38 +109,35 @@ Website interaktif sebagai representasi diri, menampilkan skill, pengalaman, dan
     <section class="section" id="about">
       <div class="container">
         <div class="section-heading reveal">
-          <p class="eyebrow">TENTANG SAYA</p>
+          <p class="eyebrow">TENTANG</p>
           <h2>Kenalan Lebih Dekat</h2>
           <p class="section-subtext">
-            Sedikit gambaran tentang siapa saya dan apa yang sedang saya bangun.
+            Sedikit gambaran tentang diri saya, cara saya bekerja, dan tujuan yang sedang saya bangun.
           </p>
         </div>
 
         <div class="about-grid">
-          <div class="about-card reveal">
+          <div class="info-card reveal">
             <h3>Siapa Saya</h3>
             <p>
-              Saya adalah pembelajar di bidang teknologi yang tertarik pada web
-              development, UI design, dan pengalaman pengguna. Saya suka
-              membuat tampilan yang terlihat premium namun tetap ringan dan rapi.
+              Saya tertarik pada pengembangan website, desain antarmuka, dan pengalaman
+              pengguna yang nyaman. Saya suka membangun tampilan yang elegan namun tetap fungsional.
             </p>
           </div>
 
-          <div class="about-card reveal">
-            <h3>Fokus Saya</h3>
+          <div class="info-card reveal">
+            <h3>Cara Saya Bekerja</h3>
             <p>
-              Fokus saya adalah membuat website yang responsif, enak dilihat,
-              dan punya struktur yang bersih. Saya juga terus mengasah skill
-              HTML, CSS, JavaScript, dan workflow GitHub.
+              Saya terbiasa bekerja dengan logika yang terstruktur, desain yang bersih,
+              dan pendekatan yang fokus pada detail agar hasil akhir terlihat lebih matang.
             </p>
           </div>
 
-          <div class="about-card reveal">
-            <h3>Tujuan Saya</h3>
+          <div class="info-card reveal">
+            <h3>Tujuan</h3>
             <p>
-              Saya ingin membangun portfolio yang profesional, memperbanyak
-              project nyata, dan berkembang menjadi developer yang bisa membuat
-              produk digital yang berguna dan menarik.
+              Saya ingin terus mengembangkan portfolio, memperbanyak project nyata,
+              dan membangun identitas sebagai developer yang profesional dan adaptif.
             </p>
           </div>
         </div>
@@ -158,7 +150,7 @@ Website interaktif sebagai representasi diri, menampilkan skill, pengalaman, dan
           <p class="eyebrow">SKILL</p>
           <h2>Kemampuan Utama</h2>
           <p class="section-subtext">
-            Beberapa kemampuan yang saya gunakan untuk membangun tampilan web modern.
+            Beberapa kemampuan yang saya gunakan untuk membangun tampilan web yang modern.
           </p>
         </div>
 
@@ -166,37 +158,37 @@ Website interaktif sebagai representasi diri, menampilkan skill, pengalaman, dan
           <div class="skill-card reveal">
             <div class="skill-icon">H</div>
             <h3>HTML</h3>
-            <p>Menyusun struktur halaman yang semantik, rapi, dan mudah dikembangkan.</p>
+            <p>Menyusun struktur website yang semantik, rapi, dan siap dikembangkan.</p>
           </div>
 
           <div class="skill-card reveal">
             <div class="skill-icon">C</div>
             <h3>CSS</h3>
-            <p>Mendesain tampilan premium, layout modern, dan elemen visual yang menarik.</p>
+            <p>Mendesain tampilan premium, elegan, dan responsif di berbagai perangkat.</p>
           </div>
 
           <div class="skill-card reveal">
             <div class="skill-icon">J</div>
             <h3>JavaScript</h3>
-            <p>Menambahkan interaksi, animasi sederhana, dan pengalaman pengguna yang hidup.</p>
+            <p>Menambahkan interaksi dan animasi agar website terasa lebih hidup.</p>
           </div>
 
           <div class="skill-card reveal">
             <div class="skill-icon">R</div>
-            <h3>Responsive Design</h3>
-            <p>Membuat website tetap nyaman dilihat di laptop, tablet, dan smartphone.</p>
+            <h3>Responsive</h3>
+            <p>Memastikan website tetap nyaman dilihat di laptop maupun smartphone.</p>
           </div>
 
           <div class="skill-card reveal">
             <div class="skill-icon">G</div>
             <h3>GitHub</h3>
-            <p>Mengelola project, menyimpan versi kode, dan deploy website dengan GitHub Pages.</p>
+            <p>Mengelola versi project, menyimpan kode, dan melakukan publish website.</p>
           </div>
 
           <div class="skill-card reveal">
             <div class="skill-icon">U</div>
-            <h3>UI Thinking</h3>
-            <p>Mengutamakan tampilan yang bersih, seimbang, dan enak digunakan pengguna.</p>
+            <h3>UI Sense</h3>
+            <p>Memperhatikan visual, keseimbangan layout, dan detail antarmuka.</p>
           </div>
         </div>
       </div>
@@ -208,59 +200,53 @@ Website interaktif sebagai representasi diri, menampilkan skill, pengalaman, dan
           <p class="eyebrow">PROJECT</p>
           <h2>Karya Pilihan</h2>
           <p class="section-subtext">
-            Project yang menggambarkan gaya belajar dan eksplorasi saya di web development.
+            Beberapa contoh project yang mewakili gaya desain dan cara berpikir saya.
           </p>
         </div>
 
         <div class="projects-grid">
           <article class="project-card reveal">
-            <div class="project-banner gradient-1"></div>
-            <div class="project-content">
-              <span class="project-badge">Featured</span>
-              <h3>Premium Portfolio Website</h3>
-              <p>
-                Website portfolio personal dengan desain dark premium, animasi halus,
-                dan layout modern untuk menampilkan profil dan project.
-              </p>
-              <div class="project-tags">
-                <span>HTML</span>
-                <span>CSS</span>
-                <span>JavaScript</span>
-              </div>
+            <div class="project-bar gradient-1"></div>
+            <span class="project-badge">Featured</span>
+            <h3>Personal Portfolio Website</h3>
+            <p>
+              Website portfolio interaktif sebagai representasi diri, menampilkan skill,
+              pengalaman, dan karya dengan desain modern dan responsif.
+            </p>
+            <div class="project-tags">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>JavaScript</span>
             </div>
           </article>
 
           <article class="project-card reveal">
-            <div class="project-banner gradient-2"></div>
-            <div class="project-content">
-              <span class="project-badge">Modern UI</span>
-              <h3>Landing Page Exploration</h3>
-              <p>
-                Eksperimen membuat landing page yang fokus pada headline kuat,
-                struktur rapi, dan visual yang menarik perhatian.
-              </p>
-              <div class="project-tags">
-                <span>UI</span>
-                <span>Responsive</span>
-                <span>Design</span>
-              </div>
+            <div class="project-bar gradient-2"></div>
+            <span class="project-badge">UI Project</span>
+            <h3>E-Commerce Mini Platform</h3>
+            <p>
+              Membangun platform jual beli berbasis web dengan sistem autentikasi,
+              keranjang belanja, dan integrasi pembayaran.
+            </p>
+            <div class="project-tags">
+              <span>UI</span>
+              <span>Web</span>
+              <span>System</span>
             </div>
           </article>
 
           <article class="project-card reveal">
-            <div class="project-banner gradient-3"></div>
-            <div class="project-content">
-              <span class="project-badge">Next Build</span>
-              <h3>Next Web Project</h3>
-              <p>
-                Slot untuk project selanjutnya yang akan saya isi dengan karya baru,
-                peningkatan skill, dan eksperimen tampilan yang lebih matang.
-              </p>
-              <div class="project-tags">
-                <span>Next</span>
-                <span>Creative</span>
-                <span>Build</span>
-              </div>
+            <div class="project-bar gradient-3"></div>
+            <span class="project-badge">Next Build</span>
+            <h3>Creative Landing Page</h3>
+            <p>
+              Eksplorasi landing page dengan fokus pada headline kuat, visual premium,
+              dan pengalaman pengguna yang lebih menarik.
+            </p>
+            <div class="project-tags">
+              <span>Design</span>
+              <span>Responsive</span>
+              <span>Creative</span>
             </div>
           </article>
         </div>
@@ -273,7 +259,7 @@ Website interaktif sebagai representasi diri, menampilkan skill, pengalaman, dan
           <p class="eyebrow">KONTAK</p>
           <h2>Mari Terhubung</h2>
           <p class="section-subtext">
-            Kalau ingin bekerja sama, berdiskusi, atau sekadar menyapa, hubungi saya di bawah ini.
+            Kalau ingin berdiskusi, bekerja sama, atau sekadar menyapa, hubungi saya.
           </p>
         </div>
 
@@ -304,7 +290,7 @@ Website interaktif sebagai representasi diri, menampilkan skill, pengalaman, dan
 
   <footer class="footer">
     <div class="container footer-content">
-      <p>© 2026 Fahri Premium Portfolio. All rights reserved.</p>
+      <p>© 2026 FahriDev. All rights reserved.</p>
       <a href="#home" class="back-top">Kembali ke atas ↑</a>
     </div>
   </footer>
