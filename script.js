@@ -8,10 +8,10 @@ const navLinks = document.querySelectorAll(".nav-link");
 const form = document.querySelector(".contact-form");
 
 const words = [
+  "Tech Enthusiast",
   "Frontend Developer",
   "UI Explorer",
-  "Creative Web Builder",
-  "Tech Enthusiast"
+  "Creative Web Builder"
 ];
 
 let wordIndex = 0;
