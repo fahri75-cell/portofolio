@@ -3,51 +3,53 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FahriDev | Premium Portfolio</title>
-  <meta name="description" content="Portfolio premium Fahri dengan tampilan modern, mewah, dan responsif." />
+  <title>Fahri | Portfolio</title>
+  <meta
+    name="description"
+    content="Portfolio premium Fahri dengan tampilan modern, clean, dan responsif."
+  />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="bg-blur blur-left"></div>
-  <div class="bg-blur blur-right"></div>
-  <div class="bg-noise"></div>
+  <div class="bg-blur blur-one"></div>
+  <div class="bg-blur blur-two"></div>
 
-  <header class="header" id="header">
-    <div class="container nav">
+  <header class="site-header" id="site-header">
+    <div class="container nav-wrap">
       <a href="#home" class="logo">Fahri<span>Dev.</span></a>
 
-      <nav class="navbar" id="navbar">
+      <nav class="nav" id="nav">
         <a href="#home" class="nav-link active">Beranda</a>
-        <a href="#about" class="nav-link">Tentang</a>
-        <a href="#projects" class="nav-link">Proyek</a>
+        <a href="#about" class="nav-link">Perjalanan saya didunia digital dimulai sejak bangku SMK.Sebagai seorang pembelajar
+        otodidak,,saya terbiasa memecahkan masalah secara mandiri.Bagi saya, coding adalah seni
+        menyusun logika yang hidup</a>
+        <a href="#projects" class="nav-link">Website interaktif sebagai representasi diri, menampilkan skill, pengalaman, dan karya dengan desain modern dan responsif.</a>
         <a href="#contact" class="nav-link">Kontak</a>
       </nav>
 
-      <button class="menu-toggle" id="menu-toggle" aria-label="Buka menu">
-        ☰
-      </button>
+      <button class="menu-btn" id="menu-btn" aria-label="Buka menu">☰</button>
     </div>
   </header>
 
   <main>
-    <section class="hero section" id="home">
+    <section class="hero" id="home">
       <div class="container hero-grid">
         <div class="hero-left reveal">
-          <p class="eyebrow">HALO, SAYA</p>
+          <p class="section-tag">HALO, SAYA</p>
 
           <h1>
             Fahri Saputra<br />
             <span class="gradient-text">Web Developer & UI Explorer</span>
           </h1>
 
-          <h2 class="typing-line">
-            Seorang <span id="typing-text"></span>
+          <h2 class="typing-text">
+            Seorang <span id="typing-word">Frontend Developer</span>
           </h2>
 
           <p class="hero-desc">
@@ -58,45 +60,35 @@
 
           <div class="hero-social">
             <a href="https://github.com/fahri75-cell" target="_blank">GitHub</a>
-            <a href="#" target="_blank">Instagram</a>
-            <a href="#" target="_blank">LinkedIn</a>
-            <a href="#" target="_blank">TikTok</a>
+            <a href="#">Instagram</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">TikTok</a>
           </div>
 
-          <div class="hero-buttons">
-            <a href="#projects" class="btn btn-primary">Lihat Proyek ↗</a>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">Lihat Proyek</a>
             <a href="#contact" class="btn btn-secondary">Kontak Saya</a>
           </div>
         </div>
 
         <div class="hero-right reveal">
-          <div class="profile-card">
-            <div class="profile-glow"></div>
-            <div class="profile-top">
-              <div class="status-dot"></div>
+          <div class="hero-card">
+            <div class="hero-card-top">
+              <span class="status-dot"></span>
               <span>Online</span>
             </div>
 
-            <div class="profile-image-box">
-              <div class="image-placeholder">
-                <span>F</span>
-              </div>
-            </div>
+            <div class="hero-card-avatar">F</div>
 
-            <div class="profile-content">
-              <h3>Fahri Saputra</h3>
-              <p>Frontend Developer</p>
-            </div>
+            <h3>Fahri Saputra</h3>
+            <p>Frontend Developer</p>
 
-            <div class="profile-bottom">
-              <div class="mini-user">
-                <div class="mini-avatar">F</div>
-                <div>
-                  <strong>@fahri75-cell</strong>
-                  <small>Available for work</small>
-                </div>
+            <div class="hero-card-bottom">
+              <div>
+                <strong>@fahri75-cell</strong>
+                <small>Available for work</small>
               </div>
-              <a href="#contact" class="mini-btn">Contact Me</a>
+              <a href="#contact">Contact Me</a>
             </div>
           </div>
         </div>
@@ -106,15 +98,15 @@
     <section class="section" id="about">
       <div class="container">
         <div class="section-head reveal">
-          <p class="eyebrow">TENTANG</p>
+          <p class="section-tag">TENTANG</p>
           <h2>Tentang Saya</h2>
-          <p class="section-desc">
+          <p class="section-text">
             Sedikit gambaran tentang gaya kerja, kemampuan, dan tujuan saya dalam membangun produk digital.
           </p>
         </div>
 
         <div class="about-grid">
-          <div class="about-card reveal">
+          <div class="info-card reveal">
             <h3>Mindset</h3>
             <p>
               Saya percaya hal besar bukan datang dari keberuntungan semata,
@@ -122,19 +114,19 @@
             </p>
           </div>
 
-          <div class="about-card reveal">
+          <div class="info-card reveal">
             <h3>Skill</h3>
             <p>
-              Mampu mengubah ide kompleks menjadi solusi digital yang efisien dan scalable,
-              dengan logika terstruktur, clean code, dan arsitektur yang rapi.
+              Mampu mengubah ide kompleks menjadi solusi digital yang efisien
+              dan scalable, dengan logika terstruktur dan clean code.
             </p>
           </div>
 
-          <div class="about-card reveal">
+          <div class="info-card reveal">
             <h3>Nilai</h3>
             <p>
-              Saya mengutamakan tampilan modern, performa ringan, dan pengalaman pengguna
-              yang nyaman agar website terasa lebih profesional.
+              Saya mengutamakan tampilan modern, performa ringan, dan pengalaman
+              pengguna yang nyaman agar website terasa profesional.
             </p>
           </div>
         </div>
@@ -144,21 +136,21 @@
     <section class="section" id="projects">
       <div class="container">
         <div class="section-head reveal">
-          <p class="eyebrow">PROYEK</p>
+          <p class="section-tag">PROYEK</p>
           <h2>Karya Pilihan</h2>
-          <p class="section-desc">
-            Beberapa contoh project yang mewakili gaya desain dan arah pengembangan saya.
+          <p class="section-text">
+            Beberapa project yang menggambarkan gaya desain dan cara berpikir saya.
           </p>
         </div>
 
-        <div class="projects-grid">
+        <div class="project-grid">
           <article class="project-card reveal">
-            <div class="project-topline gradient-1"></div>
-            <span class="project-badge">Featured</span>
+            <div class="project-line line-one"></div>
+            <span class="project-label">Featured</span>
             <h3>Personal Portfolio Website</h3>
             <p>
-              Website interaktif sebagai representasi diri, menampilkan skill,
-              project, dan identitas visual dengan desain modern.
+              Website portfolio modern sebagai representasi diri, menampilkan
+              skill, project, dan identitas visual yang clean.
             </p>
             <div class="project-tags">
               <span>HTML</span>
@@ -168,12 +160,12 @@
           </article>
 
           <article class="project-card reveal">
-            <div class="project-topline gradient-2"></div>
-            <span class="project-badge">UI System</span>
+            <div class="project-line line-two"></div>
+            <span class="project-label">UI Project</span>
             <h3>E-Commerce Mini Platform</h3>
             <p>
-              Platform jual beli berbasis web dengan pendekatan antarmuka yang rapi,
-              struktur sistem jelas, dan pengalaman pengguna yang nyaman.
+              Konsep platform jual beli berbasis web dengan fokus pada struktur,
+              antarmuka yang rapi, dan pengalaman pengguna.
             </p>
             <div class="project-tags">
               <span>UI</span>
@@ -183,12 +175,12 @@
           </article>
 
           <article class="project-card reveal">
-            <div class="project-topline gradient-3"></div>
-            <span class="project-badge">Next Build</span>
+            <div class="project-line line-three"></div>
+            <span class="project-label">Next Build</span>
             <h3>Creative Landing Page</h3>
             <p>
-              Eksplorasi landing page modern dengan visual kuat, hierarki konten jelas,
-              dan animasi halus untuk meningkatkan impresi pertama.
+              Eksplorasi landing page modern dengan hierarki visual yang kuat,
+              desain elegan, dan interaksi yang halus.
             </p>
             <div class="project-tags">
               <span>Design</span>
@@ -203,28 +195,28 @@
     <section class="section contact-section" id="contact">
       <div class="container">
         <div class="section-head reveal">
-          <p class="eyebrow">KONTAK</p>
+          <p class="section-tag">KONTAK</p>
           <h2>Mari <span class="gradient-text">Terhubung</span></h2>
-          <p class="section-desc">
+          <p class="section-text">
             Saya selalu terbuka untuk proyek baru atau sekadar obrolan. Kirimkan sinyal Anda.
           </p>
         </div>
 
-        <div class="contact-grid-main reveal">
+        <div class="contact-box reveal">
           <div class="contact-left">
-            <p class="status-line">● SYSTEM STATUS: ONLINE</p>
+            <p class="contact-status">● SYSTEM STATUS: ONLINE</p>
 
-            <div class="contact-info-box">
-              <span class="contact-label">EMAIL ME</span>
+            <div class="contact-info">
+              <span>EMAIL ME</span>
               <strong>fahrisaputra825@gmail.com</strong>
             </div>
 
-            <div class="contact-info-box">
-              <span class="contact-label">CHAT WHATSAPP</span>
+            <div class="contact-info">
+              <span>CHAT WHATSAPP</span>
               <strong>+62 81376709008</strong>
             </div>
 
-            <div class="contact-footer-text">ESTABLISHING UPLINK...</div>
+            <small class="contact-note">ESTABLISHING UPLINK...</small>
           </div>
 
           <div class="contact-right">
@@ -234,7 +226,7 @@
               <input type="text" placeholder="ID Pengirim / Nama" />
               <input type="email" placeholder="Frekuensi Email" />
               <textarea placeholder="Data Transmisi Pesan"></textarea>
-              <button type="submit">INISIASI TRANSMISI ↗</button>
+              <button type="submit">INISIASI TRANSMISI</button>
             </form>
           </div>
         </div>
@@ -242,7 +234,7 @@
     </section>
   </main>
 
-  <footer class="footer">
+  <footer class="site-footer">
     <div class="container footer-wrap">
       <p>© 2026 FahriDev. All rights reserved.</p>
       <a href="#home">Kembali ke atas ↑</a>
