@@ -1,11 +1,12 @@
 const typingText = document.getElementById("typing-text");
 const menuToggle = document.getElementById("menu-toggle");
 const navbar = document.getElementById("navbar");
+const revealElements = document.querySelectorAll(".reveal");
 
 const words = [
   "Frontend Developer",
-  "Web Designer",
-  "Creative Learner",
+  "UI Explorer",
+  "Creative Web Learner",
   "Tech Enthusiast"
 ];
 
@@ -20,10 +21,10 @@ function typeEffect() {
 
   if (!isDeleting && charIndex < currentWord.length) {
     charIndex++;
-    setTimeout(typeEffect, 100);
+    setTimeout(typeEffect, 95);
   } else if (isDeleting && charIndex > 0) {
     charIndex--;
-    setTimeout(typeEffect, 60);
+    setTimeout(typeEffect, 55);
   } else {
     isDeleting = !isDeleting;
 
@@ -40,3 +41,24 @@ typeEffect();
 menuToggle.addEventListener("click", () => {
   navbar.classList.toggle("show");
 });
+
+document.querySelectorAll(".navbar a").forEach((link) => {
+  link.addEventListener("click", () => {
+    navbar.classList.remove("show");
+  });
+});
+
+function revealOnScroll() {
+  revealElements.forEach((element) => {
+    const windowHeight = window.innerHeight;
+    const elementTop = element.getBoundingClientRect().top;
+    const visiblePoint = 110;
+
+    if (elementTop < windowHeight - visiblePoint) {
+      element.classList.add("show");
+    }
+  });
+}
+
+window.addEventListener("scroll", revealOnScroll);
+window.addEventListener("load", revealOnScroll);
