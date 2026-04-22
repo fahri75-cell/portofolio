@@ -2,11 +2,12 @@ const typingText = document.getElementById("typing-text");
 const menuToggle = document.getElementById("menu-toggle");
 const navbar = document.getElementById("navbar");
 const revealElements = document.querySelectorAll(".reveal");
+const header = document.getElementById("header");
 
 const words = [
   "Frontend Developer",
   "UI Explorer",
-  "Creative Web Learner",
+  "Creative Learner",
   "Tech Enthusiast"
 ];
 
@@ -62,3 +63,23 @@ function revealOnScroll() {
 
 window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("load", revealOnScroll);
+
+let lastScrollTop = 0;
+
+window.addEventListener("scroll", () => {
+  const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+  if (currentScroll > 50) {
+    header.classList.add("scrolled");
+  } else {
+    header.classList.remove("scrolled");
+  }
+
+  if (currentScroll > lastScrollTop && currentScroll > 120) {
+    header.classList.add("hide");
+  } else {
+    header.classList.remove("hide");
+  }
+
+  lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+});
