@@ -1,10 +1,11 @@
-const typingText = document.getElementById("typing-text");
-const menuToggle = document.getElementById("menu-toggle");
-const navbar = document.getElementById("navbar");
-const revealElements = document.querySelectorAll(".reveal");
-const header = document.getElementById("header");
+const typingWord = document.getElementById("typing-word");
+const menuBtn = document.getElementById("menu-btn");
+const nav = document.getElementById("nav");
+const header = document.getElementById("site-header");
+const revealItems = document.querySelectorAll(".reveal");
 const sections = document.querySelectorAll("section");
 const navLinks = document.querySelectorAll(".nav-link");
+const form = document.querySelector(".contact-form");
 
 const words = [
   "Frontend Developer",
@@ -15,108 +16,98 @@ const words = [
 
 let wordIndex = 0;
 let charIndex = 0;
-let isDeleting = false;
+let deleting = false;
+let lastScrollY = window.scrollY;
 
 function typeEffect() {
-  if (!typingText) return;
+  if (!typingWord) return;
 
-  const currentWord = words[wordIndex];
-  const currentText = currentWord.substring(0, charIndex);
-  typingText.textContent = currentText;
+  const current = words[wordIndex];
+  typingWord.textContent = current.substring(0, charIndex);
 
-  if (!isDeleting && charIndex < currentWord.length) {
+  if (!deleting && charIndex < current.length) {
     charIndex++;
-    setTimeout(typeEffect, 95);
-  } else if (isDeleting && charIndex > 0) {
+    setTimeout(typeEffect, 90);
+  } else if (deleting && charIndex > 0) {
     charIndex--;
-    setTimeout(typeEffect, 55);
+    setTimeout(typeEffect, 50);
   } else {
-    isDeleting = !isDeleting;
-
-    if (!isDeleting) {
+    deleting = !deleting;
+    if (!deleting) {
       wordIndex = (wordIndex + 1) % words.length;
     }
-
-    setTimeout(typeEffect, 1000);
+    setTimeout(typeEffect, 900);
   }
 }
 
 typeEffect();
 
-if (menuToggle && navbar) {
-  menuToggle.addEventListener("click", () => {
-    navbar.classList.toggle("show");
+if (menuBtn && nav) {
+  menuBtn.addEventListener("click", () => {
+    nav.classList.toggle("show");
   });
 }
 
 navLinks.forEach((link) => {
   link.addEventListener("click", () => {
-    navbar.classList.remove("show");
+    nav.classList.remove("show");
   });
 });
 
 function revealOnScroll() {
-  revealElements.forEach((element) => {
+  revealItems.forEach((item) => {
+    const top = item.getBoundingClientRect().top;
     const windowHeight = window.innerHeight;
-    const elementTop = element.getBoundingClientRect().top;
-    const visiblePoint = 110;
 
-    if (elementTop < windowHeight - visiblePoint) {
-      element.classList.add("show");
+    if (top < windowHeight - 100) {
+      item.classList.add("show");
     }
   });
 }
 
-window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("load", revealOnScroll);
-
-let lastScrollY = window.scrollY;
+window.addEventListener("scroll", revealOnScroll);
 
 window.addEventListener("scroll", () => {
-  const currentScrollY = window.scrollY;
+  const currentScroll = window.scrollY;
 
-  if (!header) return;
-
-  if (currentScrollY <= 0) {
-    header.classList.remove("hide");
-    header.classList.remove("scrolled");
-  } else {
+  if (currentScroll > 20) {
     header.classList.add("scrolled");
-
-    if (currentScrollY > lastScrollY && currentScrollY > 80) {
-      header.classList.add("hide");
-    } else {
-      header.classList.remove("hide");
-    }
+  } else {
+    header.classList.remove("scrolled");
   }
 
-  lastScrollY = currentScrollY;
+  if (currentScroll > lastScrollY && currentScroll > 100) {
+    header.classList.add("hide");
+  } else {
+    header.classList.remove("hide");
+  }
+
+  lastScrollY = currentScroll <= 0 ? 0 : currentScroll;
 });
 
 window.addEventListener("scroll", () => {
-  let current = "";
+  let currentSection = "";
 
   sections.forEach((section) => {
     const sectionTop = section.offsetTop - 140;
     const sectionHeight = section.offsetHeight;
 
     if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-      current = section.getAttribute("id");
+      currentSection = section.getAttribute("id");
     }
   });
 
   navLinks.forEach((link) => {
     link.classList.remove("active");
-    if (link.getAttribute("href") === `#${current}`) {
+    if (link.getAttribute("href") === `#${currentSection}`) {
       link.classList.add("active");
     }
   });
 });
 
-const form = document.querySelector(".contact-form");
-
 if (form) {
-  form.addEventListener("submit", function (e) {
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
     alert("Transmisi berhasil dikirim.");
     form.reset();
