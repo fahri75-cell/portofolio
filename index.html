@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fahri | Premium Portfolio</title>
-  <meta name="description" content="Portfolio premium Fahri dengan tampilan modern, elegan, dan responsif." />
+  <title>FahriDev | Premium Portfolio</title>
+  <meta name="description" content="Portfolio premium Fahri dengan tampilan modern, mewah, dan responsif." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -14,93 +14,90 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="bg-orb orb-1"></div>
-  <div class="bg-orb orb-2"></div>
-  <div class="bg-grid"></div>
+  <div class="bg-blur blur-left"></div>
+  <div class="bg-blur blur-right"></div>
+  <div class="bg-noise"></div>
 
   <header class="header" id="header">
     <div class="container nav">
-      <a href="#home" class="logo">Fahri<span>Dev</span></a>
+      <a href="#home" class="logo">Fahri<span>Dev.</span></a>
 
       <nav class="navbar" id="navbar">
-        <a href="#home">Home</a>
-        <a href="#about">Saya percaya, hal besar bukan datang dari keberuntungan semata, tapi dari keputusan kecil yang diulang setiap hari.</a>
-        <a href="#skills">Skill Mampu mengubah ide kompleks menjadi solusi digital yang efisien dan scalable
-Terbiasa bekerja dengan logika terstruktur, clean code, dan arsitektur yang rapi
-Menguasai dasar hingga lanjutan dalam pengembangan aplikasi (frontend & backend)</a>
-        <a href="#projects">Project Website interaktif sebagai representasi diri, menampilkan skill, pengalaman, dan karya dengan desain modern dan responsif.</a>
-        <a href="#contact">Kontak</a>
+        <a href="#home" class="nav-link active">Beranda</a>
+        <a href="#about" class="nav-link">Tentang</a>
+        <a href="#projects" class="nav-link">Proyek</a>
+        <a href="#contact" class="nav-link">Kontak</a>
       </nav>
 
-      <button class="menu-toggle" id="menu-toggle" aria-label="Buka menu">☰</button>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Buka menu">
+        ☰
+      </button>
     </div>
   </header>
 
   <main>
     <section class="hero section" id="home">
-      <div class="container hero-layout">
-        <div class="hero-content reveal">
-          <p class="eyebrow">PREMIUM PORTFOLIO</p>
+      <div class="container hero-grid">
+        <div class="hero-left reveal">
+          <p class="eyebrow">HALO, SAYA</p>
+
           <h1>
-            Halo, Saya <span>Fahri Saputra</span><br />
-            Membangun tampilan web yang <span class="gradient-text">modern, bersih, dan mewah</span>.
+            Fahri Saputra<br />
+            <span class="gradient-text">Web Developer & UI Explorer</span>
           </h1>
 
           <h2 class="typing-line">
-            Saya adalah <span id="typing-text"></span>
+            Seorang <span id="typing-text"></span>
           </h2>
 
           <p class="hero-desc">
-            Saya fokus membuat website yang responsive, nyaman dilihat, dan punya
-            nuansa profesional. Portfolio ini saya buat untuk menampilkan skill,
-            project, dan perjalanan belajar saya di dunia pengembangan web.
+            Saya membantu menghadirkan tampilan website yang modern, bersih,
+            premium, dan responsif. Fokus saya ada pada desain antarmuka,
+            pengalaman pengguna, dan pengembangan frontend yang rapi.
           </p>
-
-          <div class="hero-buttons">
-            <a href="#projects" class="btn btn-primary">Lihat Project</a>
-            <a href="#contact" class="btn btn-secondary">Hubungi Saya</a>
-            <a href="#" class="btn btn-outline">Download CV</a>
-          </div>
 
           <div class="hero-social">
             <a href="https://github.com/fahri75-cell" target="_blank">GitHub</a>
             <a href="#" target="_blank">Instagram</a>
             <a href="#" target="_blank">LinkedIn</a>
-            <a href="#" target="_blank">WhatsApp</a>
+            <a href="#" target="_blank">TikTok</a>
+          </div>
+
+          <div class="hero-buttons">
+            <a href="#projects" class="btn btn-primary">Lihat Proyek ↗</a>
+            <a href="#contact" class="btn btn-secondary">Kontak Saya</a>
           </div>
         </div>
 
-        <div class="hero-panel reveal">
-          <div class="glass-card big-card">
-            <p class="card-label">Tentang Saya</p>
-            <h3>Frontend learner dengan fokus pada tampilan modern.</h3>
-            <p>
-              Bukan yang paling keras suaranya, tapi selalu punya cara untuk
-              didengar. Bukan yang paling cepat, tapi tahu kapan harus melangkah
-              dan kapan harus berhenti.
-            </p>
-          </div>
-
-          <div class="mini-grid">
-            <div class="glass-card mini-card">
-              <p class="card-label">Keunggulan</p>
-              <h4>Clean Code</h4>
-              <p>Struktur rapi, mudah dibaca, dan enak dikembangkan.</p>
+        <div class="hero-right reveal">
+          <div class="profile-card">
+            <div class="profile-glow"></div>
+            <div class="profile-top">
+              <div class="status-dot"></div>
+              <span>Online</span>
             </div>
 
-            <div class="glass-card mini-card">
-              <p class="card-label">Mindset</p>
-              <h4>Adaptif</h4>
-              <p>Cepat belajar dan menyesuaikan diri dengan teknologi baru.</p>
+            <div class="profile-image-box">
+              <div class="image-placeholder">
+                <span>F</span>
+              </div>
             </div>
-          </div>
 
-          <div class="glass-card ticker-card">
-            <span>HTML</span>
-            <span>CSS</span>
-            <span>JavaScript</span>
-            <span>Responsive</span>
-            <span>GitHub</span>
+            <div class="profile-content">
+              <h3>Fahri Saputra</h3>
+              <p>Frontend Developer</p>
+            </div>
+
+            <div class="profile-bottom">
+              <div class="mini-user">
+                <div class="mini-avatar">F</div>
+                <div>
+                  <strong>@fahri75-cell</strong>
+                  <small>Available for work</small>
+                </div>
+              </div>
+              <a href="#contact" class="mini-btn">Contact Me</a>
+            </div>
           </div>
         </div>
       </div>
@@ -108,87 +105,37 @@ Menguasai dasar hingga lanjutan dalam pengembangan aplikasi (frontend & backend)
 
     <section class="section" id="about">
       <div class="container">
-        <div class="section-heading reveal">
+        <div class="section-head reveal">
           <p class="eyebrow">TENTANG</p>
-          <h2>Kenalan Lebih Dekat</h2>
-          <p class="section-subtext">
-            Sedikit gambaran tentang diri saya, cara saya bekerja, dan tujuan yang sedang saya bangun.
+          <h2>Tentang Saya</h2>
+          <p class="section-desc">
+            Sedikit gambaran tentang gaya kerja, kemampuan, dan tujuan saya dalam membangun produk digital.
           </p>
         </div>
 
         <div class="about-grid">
-          <div class="info-card reveal">
-            <h3>Siapa Saya</h3>
+          <div class="about-card reveal">
+            <h3>Mindset</h3>
             <p>
-              Saya tertarik pada pengembangan website, desain antarmuka, dan pengalaman
-              pengguna yang nyaman. Saya suka membangun tampilan yang elegan namun tetap fungsional.
+              Saya percaya hal besar bukan datang dari keberuntungan semata,
+              tapi dari keputusan kecil yang diulang secara konsisten setiap hari.
             </p>
           </div>
 
-          <div class="info-card reveal">
-            <h3>Cara Saya Bekerja</h3>
+          <div class="about-card reveal">
+            <h3>Skill</h3>
             <p>
-              Saya terbiasa bekerja dengan logika yang terstruktur, desain yang bersih,
-              dan pendekatan yang fokus pada detail agar hasil akhir terlihat lebih matang.
+              Mampu mengubah ide kompleks menjadi solusi digital yang efisien dan scalable,
+              dengan logika terstruktur, clean code, dan arsitektur yang rapi.
             </p>
           </div>
 
-          <div class="info-card reveal">
-            <h3>Tujuan</h3>
+          <div class="about-card reveal">
+            <h3>Nilai</h3>
             <p>
-              Saya ingin terus mengembangkan portfolio, memperbanyak project nyata,
-              dan membangun identitas sebagai developer yang profesional dan adaptif.
+              Saya mengutamakan tampilan modern, performa ringan, dan pengalaman pengguna
+              yang nyaman agar website terasa lebih profesional.
             </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="skills">
-      <div class="container">
-        <div class="section-heading reveal">
-          <p class="eyebrow">SKILL</p>
-          <h2>Kemampuan Utama</h2>
-          <p class="section-subtext">
-            Beberapa kemampuan yang saya gunakan untuk membangun tampilan web yang modern.
-          </p>
-        </div>
-
-        <div class="skills-grid">
-          <div class="skill-card reveal">
-            <div class="skill-icon">H</div>
-            <h3>HTML</h3>
-            <p>Menyusun struktur website yang semantik, rapi, dan siap dikembangkan.</p>
-          </div>
-
-          <div class="skill-card reveal">
-            <div class="skill-icon">C</div>
-            <h3>CSS</h3>
-            <p>Mendesain tampilan premium, elegan, dan responsif di berbagai perangkat.</p>
-          </div>
-
-          <div class="skill-card reveal">
-            <div class="skill-icon">J</div>
-            <h3>JavaScript</h3>
-            <p>Menambahkan interaksi dan animasi agar website terasa lebih hidup.</p>
-          </div>
-
-          <div class="skill-card reveal">
-            <div class="skill-icon">R</div>
-            <h3>Responsive</h3>
-            <p>Memastikan website tetap nyaman dilihat di laptop maupun smartphone.</p>
-          </div>
-
-          <div class="skill-card reveal">
-            <div class="skill-icon">G</div>
-            <h3>GitHub</h3>
-            <p>Mengelola versi project, menyimpan kode, dan melakukan publish website.</p>
-          </div>
-
-          <div class="skill-card reveal">
-            <div class="skill-icon">U</div>
-            <h3>UI Sense</h3>
-            <p>Memperhatikan visual, keseimbangan layout, dan detail antarmuka.</p>
           </div>
         </div>
       </div>
@@ -196,22 +143,22 @@ Menguasai dasar hingga lanjutan dalam pengembangan aplikasi (frontend & backend)
 
     <section class="section" id="projects">
       <div class="container">
-        <div class="section-heading reveal">
-          <p class="eyebrow">PROJECT</p>
+        <div class="section-head reveal">
+          <p class="eyebrow">PROYEK</p>
           <h2>Karya Pilihan</h2>
-          <p class="section-subtext">
-            Beberapa contoh project yang mewakili gaya desain dan cara berpikir saya.
+          <p class="section-desc">
+            Beberapa contoh project yang mewakili gaya desain dan arah pengembangan saya.
           </p>
         </div>
 
         <div class="projects-grid">
           <article class="project-card reveal">
-            <div class="project-bar gradient-1"></div>
+            <div class="project-topline gradient-1"></div>
             <span class="project-badge">Featured</span>
             <h3>Personal Portfolio Website</h3>
             <p>
-              Website portfolio interaktif sebagai representasi diri, menampilkan skill,
-              pengalaman, dan karya dengan desain modern dan responsif.
+              Website interaktif sebagai representasi diri, menampilkan skill,
+              project, dan identitas visual dengan desain modern.
             </p>
             <div class="project-tags">
               <span>HTML</span>
@@ -221,31 +168,31 @@ Menguasai dasar hingga lanjutan dalam pengembangan aplikasi (frontend & backend)
           </article>
 
           <article class="project-card reveal">
-            <div class="project-bar gradient-2"></div>
-            <span class="project-badge">UI Project</span>
+            <div class="project-topline gradient-2"></div>
+            <span class="project-badge">UI System</span>
             <h3>E-Commerce Mini Platform</h3>
             <p>
-              Membangun platform jual beli berbasis web dengan sistem autentikasi,
-              keranjang belanja, dan integrasi pembayaran.
+              Platform jual beli berbasis web dengan pendekatan antarmuka yang rapi,
+              struktur sistem jelas, dan pengalaman pengguna yang nyaman.
             </p>
             <div class="project-tags">
               <span>UI</span>
-              <span>Web</span>
-              <span>System</span>
+              <span>Frontend</span>
+              <span>Responsive</span>
             </div>
           </article>
 
           <article class="project-card reveal">
-            <div class="project-bar gradient-3"></div>
+            <div class="project-topline gradient-3"></div>
             <span class="project-badge">Next Build</span>
             <h3>Creative Landing Page</h3>
             <p>
-              Eksplorasi landing page dengan fokus pada headline kuat, visual premium,
-              dan pengalaman pengguna yang lebih menarik.
+              Eksplorasi landing page modern dengan visual kuat, hierarki konten jelas,
+              dan animasi halus untuk meningkatkan impresi pertama.
             </p>
             <div class="project-tags">
               <span>Design</span>
-              <span>Responsive</span>
+              <span>UX</span>
               <span>Creative</span>
             </div>
           </article>
@@ -253,35 +200,42 @@ Menguasai dasar hingga lanjutan dalam pengembangan aplikasi (frontend & backend)
       </div>
     </section>
 
-    <section class="section" id="contact">
+    <section class="section contact-section" id="contact">
       <div class="container">
-        <div class="section-heading reveal">
+        <div class="section-head reveal">
           <p class="eyebrow">KONTAK</p>
-          <h2>Mari Terhubung</h2>
-          <p class="section-subtext">
-            Kalau ingin berdiskusi, bekerja sama, atau sekadar menyapa, hubungi saya.
+          <h2>Mari <span class="gradient-text">Terhubung</span></h2>
+          <p class="section-desc">
+            Saya selalu terbuka untuk proyek baru atau sekadar obrolan. Kirimkan sinyal Anda.
           </p>
         </div>
 
-        <div class="contact-grid">
-          <div class="contact-card reveal">
-            <h3>Email</h3>
-            <p>fahrisaputra825@gmail.com</p>
+        <div class="contact-grid-main reveal">
+          <div class="contact-left">
+            <p class="status-line">● SYSTEM STATUS: ONLINE</p>
+
+            <div class="contact-info-box">
+              <span class="contact-label">EMAIL ME</span>
+              <strong>fahrisaputra825@gmail.com</strong>
+            </div>
+
+            <div class="contact-info-box">
+              <span class="contact-label">CHAT WHATSAPP</span>
+              <strong>+62 81376709008</strong>
+            </div>
+
+            <div class="contact-footer-text">ESTABLISHING UPLINK...</div>
           </div>
 
-          <div class="contact-card reveal">
-            <h3>Instagram</h3>
-            <p>@sp7raa_</p>
-          </div>
+          <div class="contact-right">
+            <h3>INITIATE DATA TRANSMISSION</h3>
 
-          <div class="contact-card reveal">
-            <h3>GitHub</h3>
-            <p>github.com/fahri75-cell</p>
-          </div>
-
-          <div class="contact-card reveal">
-            <h3>WhatsApp</h3>
-            <p>081376709008</p>
+            <form class="contact-form">
+              <input type="text" placeholder="ID Pengirim / Nama" />
+              <input type="email" placeholder="Frekuensi Email" />
+              <textarea placeholder="Data Transmisi Pesan"></textarea>
+              <button type="submit">INISIASI TRANSMISI ↗</button>
+            </form>
           </div>
         </div>
       </div>
@@ -289,9 +243,9 @@ Menguasai dasar hingga lanjutan dalam pengembangan aplikasi (frontend & backend)
   </main>
 
   <footer class="footer">
-    <div class="container footer-content">
+    <div class="container footer-wrap">
       <p>© 2026 FahriDev. All rights reserved.</p>
-      <a href="#home" class="back-top">Kembali ke atas ↑</a>
+      <a href="#home">Kembali ke atas ↑</a>
     </div>
   </footer>
 
