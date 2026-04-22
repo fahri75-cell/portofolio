@@ -3,11 +3,13 @@ const menuToggle = document.getElementById("menu-toggle");
 const navbar = document.getElementById("navbar");
 const revealElements = document.querySelectorAll(".reveal");
 const header = document.getElementById("header");
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll(".nav-link");
 
 const words = [
   "Frontend Developer",
   "UI Explorer",
-  "Creative Learner",
+  "Creative Web Builder",
   "Tech Enthusiast"
 ];
 
@@ -16,6 +18,8 @@ let charIndex = 0;
 let isDeleting = false;
 
 function typeEffect() {
+  if (!typingText) return;
+
   const currentWord = words[wordIndex];
   const currentText = currentWord.substring(0, charIndex);
   typingText.textContent = currentText;
@@ -39,11 +43,13 @@ function typeEffect() {
 
 typeEffect();
 
-menuToggle.addEventListener("click", () => {
-  navbar.classList.toggle("show");
-});
+if (menuToggle && navbar) {
+  menuToggle.addEventListener("click", () => {
+    navbar.classList.toggle("show");
+  });
+}
 
-document.querySelectorAll(".navbar a").forEach((link) => {
+navLinks.forEach((link) => {
   link.addEventListener("click", () => {
     navbar.classList.remove("show");
   });
@@ -64,22 +70,55 @@ function revealOnScroll() {
 window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("load", revealOnScroll);
 
-let lastScrollTop = 0;
+let lastScrollY = window.scrollY;
 
 window.addEventListener("scroll", () => {
-  const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+  const currentScrollY = window.scrollY;
 
-  if (currentScroll > 50) {
-    header.classList.add("scrolled");
-  } else {
-    header.classList.remove("scrolled");
-  }
+  if (!header) return;
 
-  if (currentScroll > lastScrollTop && currentScroll > 120) {
-    header.classList.add("hide");
-  } else {
+  if (currentScrollY <= 0) {
     header.classList.remove("hide");
+    header.classList.remove("scrolled");
+  } else {
+    header.classList.add("scrolled");
+
+    if (currentScrollY > lastScrollY && currentScrollY > 80) {
+      header.classList.add("hide");
+    } else {
+      header.classList.remove("hide");
+    }
   }
 
-  lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+  lastScrollY = currentScrollY;
 });
+
+window.addEventListener("scroll", () => {
+  let current = "";
+
+  sections.forEach((section) => {
+    const sectionTop = section.offsetTop - 140;
+    const sectionHeight = section.offsetHeight;
+
+    if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+      current = section.getAttribute("id");
+    }
+  });
+
+  navLinks.forEach((link) => {
+    link.classList.remove("active");
+    if (link.getAttribute("href") === `#${current}`) {
+      link.classList.add("active");
+    }
+  });
+});
+
+const form = document.querySelector(".contact-form");
+
+if (form) {
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    alert("Transmisi berhasil dikirim.");
+    form.reset();
+  });
+}
