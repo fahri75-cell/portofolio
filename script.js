@@ -6,6 +6,8 @@ const revealItems = document.querySelectorAll(".reveal");
 const sections = document.querySelectorAll("section");
 const navLinks = document.querySelectorAll(".nav-link");
 const form = document.querySelector(".contact-form");
+const themeToggle = document.getElementById("theme-toggle");
+const themeIcon = document.getElementById("theme-icon");
 
 const words = [
   "Tech Enthusiast",
@@ -33,14 +35,42 @@ function typeEffect() {
     setTimeout(typeEffect, 50);
   } else {
     deleting = !deleting;
+
     if (!deleting) {
       wordIndex = (wordIndex + 1) % words.length;
     }
+
     setTimeout(typeEffect, 900);
   }
 }
 
 typeEffect();
+
+function applyTheme(theme) {
+  if (theme === "light") {
+    document.body.classList.add("light-theme");
+    if (themeIcon) themeIcon.textContent = "☾";
+  } else {
+    document.body.classList.remove("light-theme");
+    if (themeIcon) themeIcon.textContent = "☀";
+  }
+}
+
+const savedTheme = localStorage.getItem("portfolio-theme") || "dark";
+applyTheme(savedTheme);
+
+if (themeToggle) {
+  themeToggle.addEventListener("click", () => {
+    const isLight = document.body.classList.toggle("light-theme");
+    const selectedTheme = isLight ? "light" : "dark";
+
+    localStorage.setItem("portfolio-theme", selectedTheme);
+
+    if (themeIcon) {
+      themeIcon.textContent = isLight ? "☾" : "☀";
+    }
+  });
+}
 
 if (menuBtn && nav) {
   menuBtn.addEventListener("click", () => {
@@ -50,7 +80,7 @@ if (menuBtn && nav) {
 
 navLinks.forEach((link) => {
   link.addEventListener("click", () => {
-    nav.classList.remove("show");
+    if (nav) nav.classList.remove("show");
   });
 });
 
@@ -69,6 +99,8 @@ window.addEventListener("load", revealOnScroll);
 window.addEventListener("scroll", revealOnScroll);
 
 window.addEventListener("scroll", () => {
+  if (!header) return;
+
   const currentScroll = window.scrollY;
 
   if (currentScroll > 20) {
@@ -90,16 +122,20 @@ window.addEventListener("scroll", () => {
   let currentSection = "";
 
   sections.forEach((section) => {
-    const sectionTop = section.offsetTop - 140;
+    const sectionTop = section.offsetTop - 160;
     const sectionHeight = section.offsetHeight;
 
-    if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+    if (
+      window.scrollY >= sectionTop &&
+      window.scrollY < sectionTop + sectionHeight
+    ) {
       currentSection = section.getAttribute("id");
     }
   });
 
   navLinks.forEach((link) => {
     link.classList.remove("active");
+
     if (link.getAttribute("href") === `#${currentSection}`) {
       link.classList.add("active");
     }
