@@ -113,7 +113,6 @@
         transform: scale(1);
         opacity: 0.28;
       }
-
       to {
         transform: scale(1.14);
         opacity: 0.46;
@@ -140,6 +139,16 @@
       margin: 0 auto;
     }
 
+    /* OPENING LOCK */
+    body.opening-lock .site-header,
+    body.opening-lock .hero-left,
+    body.opening-lock .hero-right,
+    body.opening-lock .hero-social a,
+    body.opening-lock .hero-actions .btn {
+      opacity: 0;
+      pointer-events: none;
+    }
+
     .site-header {
       position: fixed;
       top: 0;
@@ -148,24 +157,27 @@
       z-index: 999;
       padding-top: 18px;
       background: transparent;
-      border-bottom: none;
       transition: transform 0.35s ease, opacity 0.35s ease;
-      animation: navDrop 0.85s ease both;
     }
 
     .site-header.hide {
       transform: translateY(-100%);
     }
 
-    @keyframes navDrop {
+    .site-header.nav-live-in {
+      animation: navSmoothIntro 0.95s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    @keyframes navSmoothIntro {
       from {
         opacity: 0;
         transform: translateY(-28px);
+        filter: blur(8px);
       }
-
       to {
         opacity: 1;
         transform: translateY(0);
+        filter: blur(0);
       }
     }
 
@@ -182,17 +194,62 @@
       box-shadow: var(--shadow);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
-      transition: background 0.35s ease, border 0.35s ease, box-shadow 0.35s ease;
+      overflow: hidden;
+      transition:
+        transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.35s ease,
+        background 0.35s ease;
     }
 
     body.light-theme .nav-wrap {
       background: rgba(255, 255, 255, 0.82);
     }
 
+    .nav-wrap::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -140%;
+      width: 70%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.08),
+        transparent
+      );
+      transform: skewX(-24deg);
+      transition: left 0.8s ease;
+      pointer-events: none;
+    }
+
+    .nav-wrap:hover::before {
+      left: 150%;
+    }
+
+    .nav-wrap:hover {
+      box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.28),
+        0 0 30px rgba(168, 85, 247, 0.15);
+      border-color: rgba(168, 85, 247, 0.22);
+    }
+
     .logo {
       font-size: 30px;
       font-weight: 800;
       color: var(--text);
+      transition:
+        transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+        text-shadow 0.35s ease,
+        opacity 0.3s ease;
+      position: relative;
+      z-index: 2;
+    }
+
+    .logo:hover {
+      transform: translateY(-1px) scale(1.02);
+      text-shadow: 0 0 18px rgba(168, 85, 247, 0.35);
     }
 
     .logo span {
@@ -202,6 +259,8 @@
     .nav {
       display: flex;
       gap: 32px;
+      position: relative;
+      z-index: 2;
     }
 
     .nav-link {
@@ -210,13 +269,22 @@
       font-weight: 500;
       color: var(--text);
       opacity: 0.76;
-      transition: 0.25s ease;
+      transition:
+        transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+        color 0.3s ease,
+        opacity 0.3s ease;
     }
 
-    .nav-link:hover,
+    .nav-link:hover {
+      transform: translateY(-2px);
+      color: var(--primary);
+      opacity: 1;
+    }
+
     .nav-link.active {
       color: var(--primary);
       opacity: 1;
+      animation: navActiveSoft 2.6s ease-in-out infinite;
     }
 
     .nav-link::after {
@@ -237,10 +305,35 @@
       width: 6px;
     }
 
+    .nav-link.active::after {
+      animation: navDotFloat 1.8s ease-in-out infinite;
+    }
+
+    @keyframes navDotFloat {
+      0%, 100% {
+        transform: translateX(-50%) translateY(0);
+      }
+      50% {
+        transform: translateX(-50%) translateY(2px);
+      }
+    }
+
+    @keyframes navActiveSoft {
+      0%, 100% {
+        text-shadow: 0 0 0 rgba(168, 85, 247, 0);
+      }
+      50% {
+        text-shadow: 0 0 12px rgba(168, 85, 247, 0.28);
+      }
+    }
+
     .nav-actions {
       display: flex;
       align-items: center;
       gap: 10px;
+      position: relative;
+      z-index: 1001;
+      pointer-events: auto;
     }
 
     .theme-toggle {
@@ -260,12 +353,18 @@
       justify-content: center;
       cursor: pointer;
       box-shadow: 0 12px 26px rgba(168, 85, 247, 0.16);
-      transition: transform 0.25s ease, background 0.25s ease, border 0.25s ease;
+      transition:
+        transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.35s ease,
+        background 0.3s ease,
+        border-color 0.3s ease;
     }
 
     .theme-toggle:hover {
-      transform: translateY(-2px) scale(1.04);
-      background: var(--card-strong);
+      transform: translateY(-2px) scale(1.06) rotate(12deg);
+      box-shadow:
+        0 12px 26px rgba(168, 85, 247, 0.22),
+        0 0 22px rgba(217, 70, 239, 0.15);
     }
 
     .theme-icon {
@@ -319,7 +418,6 @@
       from {
         text-shadow: 0 0 0 rgba(168, 85, 247, 0);
       }
-
       to {
         text-shadow: 0 0 18px rgba(168, 85, 247, 0.38);
       }
@@ -331,6 +429,8 @@
 
     .hero-right {
       animation: heroCardLive 1s ease 0.15s both;
+      display: flex;
+      justify-content: center;
     }
 
     @keyframes heroTextLive {
@@ -339,7 +439,6 @@
         transform: translateY(34px) scale(0.98);
         filter: blur(8px);
       }
-
       to {
         opacity: 1;
         transform: translateY(0) scale(1);
@@ -353,7 +452,6 @@
         transform: translateY(38px) scale(0.94);
         filter: blur(8px);
       }
-
       to {
         opacity: 1;
         transform: translateY(0) scale(1);
@@ -474,11 +572,6 @@
         0 0 22px rgba(168, 85, 247, 0.14);
     }
 
-    .hero-right {
-      display: flex;
-      justify-content: center;
-    }
-
     .hero-card {
       width: 380px;
       min-height: 520px;
@@ -497,7 +590,6 @@
       0%, 100% {
         translate: 0 0;
       }
-
       50% {
         translate: 0 -12px;
       }
@@ -940,7 +1032,9 @@
     .reveal {
       opacity: 0;
       transform: translateY(34px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
+      transition:
+        opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .reveal.show {
@@ -954,145 +1048,6 @@
       box-shadow:
         0 24px 55px rgba(79, 70, 120, 0.18),
         0 0 30px rgba(168, 85, 247, 0.14);
-    }
-
-    .intro-loader {
-      position: fixed;
-      inset: 0;
-      z-index: 99999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background:
-        radial-gradient(circle at top left, rgba(96, 165, 250, 0.18), transparent 32%),
-        radial-gradient(circle at bottom right, rgba(217, 70, 239, 0.24), transparent 35%),
-        linear-gradient(135deg, #040613 0%, #10051d 50%, #1a0830 100%);
-      overflow: hidden;
-      transition:
-        opacity 0.7s ease,
-        visibility 0.7s ease;
-    }
-
-    .intro-loader.hide {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
-
-    .intro-loader::before {
-      content: "";
-      position: absolute;
-      width: 380px;
-      height: 380px;
-      border-radius: 999px;
-      background: rgba(168, 85, 247, 0.22);
-      filter: blur(80px);
-      animation: loaderPulse 2s ease-in-out infinite alternate;
-    }
-
-    .intro-loader::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-      background-size: 42px 42px;
-      mask-image: radial-gradient(circle, black 0%, transparent 72%);
-      animation: gridMove 5s linear infinite;
-    }
-
-    @keyframes loaderPulse {
-      from {
-        transform: scale(0.9);
-        opacity: 0.55;
-      }
-
-      to {
-        transform: scale(1.18);
-        opacity: 1;
-      }
-    }
-
-    @keyframes gridMove {
-      from {
-        transform: translateY(0);
-      }
-
-      to {
-        transform: translateY(42px);
-      }
-    }
-
-    .loader-box {
-      position: relative;
-      z-index: 2;
-      width: min(420px, 86%);
-      padding: 32px;
-      border-radius: 28px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background: rgba(255, 255, 255, 0.055);
-      box-shadow:
-        0 28px 70px rgba(0, 0, 0, 0.38),
-        0 0 45px rgba(168, 85, 247, 0.18);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      text-align: center;
-      transform: translateY(16px) scale(0.96);
-      animation: loaderBoxIn 0.65s ease forwards;
-    }
-
-    @keyframes loaderBoxIn {
-      to {
-        transform: translateY(0) scale(1);
-      }
-    }
-
-    .loader-logo {
-      font-size: 34px;
-      font-weight: 800;
-      color: #f8fafc;
-      margin-bottom: 10px;
-      letter-spacing: -1px;
-    }
-
-    .loader-logo span {
-      color: #a855f7;
-    }
-
-    .loader-text {
-      color: #b3a8c7;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 4px;
-      margin-bottom: 22px;
-      text-transform: uppercase;
-    }
-
-    .loader-bar {
-      width: 100%;
-      height: 10px;
-      padding: 2px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background: rgba(255, 255, 255, 0.06);
-      overflow: hidden;
-    }
-
-    .loader-fill {
-      width: 0%;
-      height: 100%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, #60a5fa, #a855f7, #d946ef);
-      box-shadow: 0 0 24px rgba(217, 70, 239, 0.55);
-      transition: width 0.18s ease;
-    }
-
-    .loader-percent {
-      margin-top: 14px;
-      font-size: 13px;
-      color: #f8fafc;
-      font-weight: 700;
     }
 
     .cursor-orb {
@@ -1111,6 +1066,250 @@
 
     body.page-ready .cursor-orb {
       opacity: 1;
+    }
+
+    /* LOADING SCREEN */
+    .opening-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 999999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(circle at top left, rgba(96, 165, 250, 0.2), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(217, 70, 239, 0.28), transparent 35%),
+        linear-gradient(135deg, #040613 0%, #10051d 48%, #1a0830 100%);
+      overflow: hidden;
+      transition: opacity 0.75s ease, visibility 0.75s ease;
+    }
+
+    .opening-screen.hide {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .opening-screen::before {
+      content: "";
+      position: absolute;
+      width: 430px;
+      height: 430px;
+      border-radius: 50%;
+      background: rgba(168, 85, 247, 0.24);
+      filter: blur(85px);
+      animation: openingPulse 2s ease-in-out infinite alternate;
+    }
+
+    .opening-screen::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(rgba(255,255,255,0.026) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.026) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: radial-gradient(circle, black 0%, transparent 72%);
+      animation: openingGrid 5s linear infinite;
+    }
+
+    .opening-box {
+      position: relative;
+      z-index: 2;
+      width: min(430px, 86%);
+      padding: 34px;
+      border-radius: 30px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow:
+        0 28px 70px rgba(0, 0, 0, 0.42),
+        0 0 50px rgba(168, 85, 247, 0.22);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      animation: openingBoxIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+      overflow: hidden;
+    }
+
+    .opening-box::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        120deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.08) 45%,
+        rgba(255, 255, 255, 0.18) 50%,
+        rgba(255, 255, 255, 0.08) 55%,
+        transparent 100%
+      );
+      transform: translateX(-120%);
+      animation: openingScan 2.2s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .opening-ring {
+      width: 82px;
+      height: 82px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      border: 3px solid rgba(255, 255, 255, 0.12);
+      border-top-color: #a855f7;
+      border-right-color: #d946ef;
+      box-shadow:
+        0 0 28px rgba(168, 85, 247, 0.35),
+        inset 0 0 18px rgba(217, 70, 239, 0.12);
+      animation: openingSpin 1s linear infinite;
+      position: relative;
+    }
+
+    .opening-ring::after {
+      content: "";
+      position: absolute;
+      inset: 13px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(168, 85, 247, 0.32), transparent 55%);
+      animation: openingCore 1.4s ease-in-out infinite alternate;
+    }
+
+    .opening-logo {
+      position: relative;
+      z-index: 2;
+      font-size: 34px;
+      font-weight: 800;
+      color: #f8fafc;
+      margin-bottom: 10px;
+      letter-spacing: -1px;
+    }
+
+    .opening-logo span {
+      color: #a855f7;
+    }
+
+    .opening-text {
+      position: relative;
+      z-index: 2;
+      color: #b3a8c7;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+    }
+
+    .opening-status {
+      position: relative;
+      z-index: 2;
+      min-height: 20px;
+      margin-bottom: 20px;
+      font-size: 13px;
+      color: #f8fafc;
+      opacity: 0.88;
+    }
+
+    .opening-dots::after {
+      content: "";
+      animation: openingDots 1.1s steps(4, end) infinite;
+    }
+
+    .opening-bar {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 11px;
+      padding: 2px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      overflow: hidden;
+    }
+
+    .opening-fill {
+      width: 0%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #60a5fa, #a855f7, #d946ef);
+      box-shadow: 0 0 24px rgba(217, 70, 239, 0.6);
+      transition: width 0.18s ease;
+    }
+
+    .opening-percent {
+      position: relative;
+      z-index: 2;
+      margin-top: 14px;
+      font-size: 13px;
+      color: #f8fafc;
+      font-weight: 800;
+    }
+
+    @keyframes openingPulse {
+      from {
+        transform: scale(0.9);
+        opacity: 0.55;
+      }
+      to {
+        transform: scale(1.18);
+        opacity: 1;
+      }
+    }
+
+    @keyframes openingGrid {
+      from {
+        transform: translateY(0);
+      }
+      to {
+        transform: translateY(42px);
+      }
+    }
+
+    @keyframes openingBoxIn {
+      from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.94);
+        filter: blur(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes openingScan {
+      0% {
+        transform: translateX(-130%);
+      }
+      55% {
+        transform: translateX(130%);
+      }
+      100% {
+        transform: translateX(130%);
+      }
+    }
+
+    @keyframes openingSpin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes openingCore {
+      from {
+        opacity: 0.45;
+        transform: scale(0.85);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1.12);
+      }
+    }
+
+    @keyframes openingDots {
+      0% { content: ""; }
+      25% { content: "."; }
+      50% { content: ".."; }
+      75% { content: "..."; }
+      100% { content: ""; }
     }
 
     @media (max-width: 1100px) {
@@ -1167,6 +1366,11 @@
         min-height: 62px;
         border-radius: 24px;
         padding: 0 16px;
+        transform: none !important;
+      }
+
+      .nav-wrap:hover {
+        transform: none !important;
       }
 
       .nav {
@@ -1247,12 +1451,21 @@
         height: 145px;
       }
 
-      .intro-loader {
+      .opening-screen {
         display: none;
       }
 
       .cursor-orb {
         display: none;
+      }
+
+      body.opening-lock .site-header,
+      body.opening-lock .hero-left,
+      body.opening-lock .hero-right,
+      body.opening-lock .hero-social a,
+      body.opening-lock .hero-actions .btn {
+        opacity: 1;
+        pointer-events: auto;
       }
     }
   </style>
@@ -1513,479 +1726,362 @@
   </footer>
 
   <script>
-  (() => {
-    document.body.classList.add("opening-lock");
+    document.addEventListener("DOMContentLoaded", () => {
+      document.body.classList.add("opening-lock");
 
-    const style = document.createElement("style");
-    style.textContent = `
-      body.opening-lock .site-header,
-      body.opening-lock .hero-left,
-      body.opening-lock .hero-right,
-      body.opening-lock .hero-social a,
-      body.opening-lock .hero-actions .btn {
-        opacity: 0;
-        pointer-events: none;
-      }
+      const typingWord = document.getElementById("typing-word");
+      const menuBtn = document.getElementById("menu-btn");
+      const nav = document.getElementById("nav");
+      const header = document.getElementById("site-header");
+      const revealItems = document.querySelectorAll(".reveal");
+      const sections = document.querySelectorAll("section");
+      const navLinks = document.querySelectorAll(".nav-link");
+      const form = document.querySelector(".contact-form");
+      const themeToggle = document.getElementById("theme-toggle");
+      const themeIcon = document.getElementById("theme-icon");
+      const infoCards = document.querySelectorAll(".info-card");
+      const projectCards = document.querySelectorAll(".project-card");
+      const heroButtons = document.querySelectorAll(".hero-actions .btn");
+      const heroCard = document.querySelector(".hero-card");
+      const navWrap = document.querySelector(".nav-wrap");
 
-      .opening-screen {
-        position: fixed;
-        inset: 0;
-        z-index: 999999;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background:
-          radial-gradient(circle at top left, rgba(96, 165, 250, 0.2), transparent 30%),
-          radial-gradient(circle at bottom right, rgba(217, 70, 239, 0.28), transparent 35%),
-          linear-gradient(135deg, #040613 0%, #10051d 48%, #1a0830 100%);
-        overflow: hidden;
-        transition: opacity 0.75s ease, visibility 0.75s ease;
-      }
+      /* OPENING SCREEN */
+      const screen = document.createElement("div");
+      screen.className = "opening-screen";
+      screen.innerHTML = `
+        <div class="opening-box">
+          <div class="opening-ring"></div>
+          <div class="opening-logo">Fahri<span>Dev.</span></div>
+          <div class="opening-text">Initializing Portfolio</div>
+          <div class="opening-status">
+            <span class="opening-status-text">Preparing interface</span><span class="opening-dots"></span>
+          </div>
+          <div class="opening-bar">
+            <div class="opening-fill"></div>
+          </div>
+          <div class="opening-percent">0%</div>
+        </div>
+      `;
+      document.body.appendChild(screen);
 
-      .opening-screen.hide {
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-      }
+      const fill = screen.querySelector(".opening-fill");
+      const percent = screen.querySelector(".opening-percent");
+      const statusText = screen.querySelector(".opening-status-text");
 
-      .opening-screen::before {
-        content: "";
-        position: absolute;
-        width: 430px;
-        height: 430px;
-        border-radius: 50%;
-        background: rgba(168, 85, 247, 0.24);
-        filter: blur(85px);
-        animation: openingPulse 2s ease-in-out infinite alternate;
-      }
+      const statuses = [
+        "Preparing interface",
+        "Loading visual system",
+        "Syncing animations",
+        "Activating portfolio",
+        "Launching experience"
+      ];
 
-      .opening-screen::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background:
-          linear-gradient(rgba(255,255,255,0.026) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255,255,255,0.026) 1px, transparent 1px);
-        background-size: 42px 42px;
-        mask-image: radial-gradient(circle, black 0%, transparent 72%);
-        animation: openingGrid 5s linear infinite;
-      }
+      let value = 0;
 
-      .opening-box {
-        position: relative;
-        z-index: 2;
-        width: min(430px, 86%);
-        padding: 34px;
-        border-radius: 30px;
-        text-align: center;
-        background: rgba(255, 255, 255, 0.06);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        box-shadow:
-          0 28px 70px rgba(0, 0, 0, 0.42),
-          0 0 50px rgba(168, 85, 247, 0.22);
-        backdrop-filter: blur(18px);
-        -webkit-backdrop-filter: blur(18px);
-        animation: openingBoxIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
-        overflow: hidden;
-      }
+      const timer = setInterval(() => {
+        value += Math.floor(Math.random() * 10) + 7;
 
-      .opening-box::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          120deg,
-          transparent 0%,
-          rgba(255, 255, 255, 0.08) 45%,
-          rgba(255, 255, 255, 0.18) 50%,
-          rgba(255, 255, 255, 0.08) 55%,
-          transparent 100%
+        if (value >= 100) {
+          value = 100;
+          clearInterval(timer);
+          statusText.textContent = "Ready";
+
+          setTimeout(() => {
+            screen.classList.add("hide");
+            document.body.classList.remove("opening-lock");
+            document.body.classList.add("opening-ready", "page-ready");
+            if (header) {
+              header.classList.remove("nav-live-in");
+              void header.offsetWidth;
+              header.classList.add("nav-live-in");
+            }
+          }, 450);
+
+          setTimeout(() => {
+            screen.remove();
+          }, 1400);
+        }
+
+        const statusIndex = Math.min(
+          statuses.length - 1,
+          Math.floor((value / 100) * statuses.length)
         );
-        transform: translateX(-120%);
-        animation: openingScan 2.2s ease-in-out infinite;
-        pointer-events: none;
-      }
 
-      .opening-ring {
-        width: 82px;
-        height: 82px;
-        margin: 0 auto 18px;
-        border-radius: 50%;
-        border: 3px solid rgba(255, 255, 255, 0.12);
-        border-top-color: #a855f7;
-        border-right-color: #d946ef;
-        box-shadow:
-          0 0 28px rgba(168, 85, 247, 0.35),
-          inset 0 0 18px rgba(217, 70, 239, 0.12);
-        animation: openingSpin 1s linear infinite;
-        position: relative;
-      }
+        statusText.textContent = statuses[statusIndex];
+        fill.style.width = value + "%";
+        percent.textContent = value + "%";
+      }, 130);
 
-      .opening-ring::after {
-        content: "";
-        position: absolute;
-        inset: 13px;
-        border-radius: 50%;
-        background:
-          radial-gradient(circle, rgba(168, 85, 247, 0.32), transparent 55%);
-        animation: openingCore 1.4s ease-in-out infinite alternate;
-      }
+      /* CURSOR ORB */
+      const cursorOrb = document.createElement("div");
+      cursorOrb.className = "cursor-orb";
+      document.body.appendChild(cursorOrb);
 
-      .opening-logo {
-        position: relative;
-        z-index: 2;
-        font-size: 34px;
-        font-weight: 800;
-        color: #f8fafc;
-        margin-bottom: 10px;
-        letter-spacing: -1px;
-      }
+      window.addEventListener("mousemove", (e) => {
+        cursorOrb.style.left = `${e.clientX}px`;
+        cursorOrb.style.top = `${e.clientY}px`;
+      });
 
-      .opening-logo span {
-        color: #a855f7;
-      }
+      /* TYPING EFFECT */
+      const words = [
+        "Tech Enthusiast",
+        "Frontend Developer",
+        "UI Explorer",
+        "Creative Web Builder"
+      ];
 
-      .opening-text {
-        position: relative;
-        z-index: 2;
-        color: #b3a8c7;
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 4px;
-        margin-bottom: 14px;
-        text-transform: uppercase;
-      }
+      let wordIndex = 0;
+      let charIndex = 0;
+      let deleting = false;
+      let lastScrollY = window.scrollY;
 
-      .opening-status {
-        position: relative;
-        z-index: 2;
-        min-height: 20px;
-        margin-bottom: 20px;
-        font-size: 13px;
-        color: #f8fafc;
-        opacity: 0.88;
-      }
+      function typeEffect() {
+        if (!typingWord) return;
 
-      .opening-dots::after {
-        content: "";
-        animation: openingDots 1.1s steps(4, end) infinite;
-      }
+        const current = words[wordIndex];
+        typingWord.textContent = current.substring(0, charIndex);
 
-      .opening-bar {
-        position: relative;
-        z-index: 2;
-        width: 100%;
-        height: 11px;
-        padding: 2px;
-        border-radius: 999px;
-        background: rgba(255,255,255,0.06);
-        border: 1px solid rgba(255,255,255,0.12);
-        overflow: hidden;
-      }
+        if (!deleting && charIndex < current.length) {
+          charIndex++;
+          setTimeout(typeEffect, 90);
+        } else if (deleting && charIndex > 0) {
+          charIndex--;
+          setTimeout(typeEffect, 50);
+        } else {
+          deleting = !deleting;
 
-      .opening-fill {
-        width: 0%;
-        height: 100%;
-        border-radius: inherit;
-        background: linear-gradient(90deg, #60a5fa, #a855f7, #d946ef);
-        box-shadow: 0 0 24px rgba(217, 70, 239, 0.6);
-        transition: width 0.18s ease;
-      }
+          if (!deleting) {
+            wordIndex = (wordIndex + 1) % words.length;
+          }
 
-      .opening-percent {
-        position: relative;
-        z-index: 2;
-        margin-top: 14px;
-        font-size: 13px;
-        color: #f8fafc;
-        font-weight: 800;
-      }
-
-      body.opening-ready .site-header {
-        pointer-events: auto;
-        animation: openingNavIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
-      }
-
-      body.opening-ready .hero-left {
-        pointer-events: auto;
-        animation: openingHeroTextIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
-      }
-
-      body.opening-ready .hero-right {
-        pointer-events: auto;
-        animation: openingHeroCardIn 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
-      }
-
-      body.opening-ready .hero-social a {
-        pointer-events: auto;
-        animation: openingSmallIn 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
-      }
-
-      body.opening-ready .hero-social a:nth-child(1) {
-        animation-delay: 0.45s;
-      }
-
-      body.opening-ready .hero-social a:nth-child(2) {
-        animation-delay: 0.55s;
-      }
-
-      body.opening-ready .hero-social a:nth-child(3) {
-        animation-delay: 0.65s;
-      }
-
-      body.opening-ready .hero-actions .btn {
-        pointer-events: auto;
-        animation: openingButtonIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
-      }
-
-      body.opening-ready .hero-actions .btn:nth-child(1) {
-        animation-delay: 0.72s;
-      }
-
-      body.opening-ready .hero-actions .btn:nth-child(2) {
-        animation-delay: 0.82s;
-      }
-
-      @keyframes openingPulse {
-        from {
-          transform: scale(0.9);
-          opacity: 0.55;
-        }
-
-        to {
-          transform: scale(1.18);
-          opacity: 1;
+          setTimeout(typeEffect, 900);
         }
       }
 
-      @keyframes openingGrid {
-        from {
-          transform: translateY(0);
+      setTimeout(typeEffect, 900);
+
+      /* THEME */
+      function setTheme(theme) {
+        if (theme === "light") {
+          document.body.classList.add("light-theme");
+          if (themeIcon) themeIcon.textContent = "☾";
+        } else {
+          document.body.classList.remove("light-theme");
+          if (themeIcon) themeIcon.textContent = "☀";
         }
 
-        to {
-          transform: translateY(42px);
-        }
+        localStorage.setItem("portfolio-theme", theme);
       }
 
-      @keyframes openingBoxIn {
-        from {
-          opacity: 0;
-          transform: translateY(18px) scale(0.94);
-          filter: blur(8px);
-        }
+      const savedTheme = localStorage.getItem("portfolio-theme");
 
-        to {
-          opacity: 1;
-          transform: translateY(0) scale(1);
-          filter: blur(0);
-        }
+      if (savedTheme) {
+        setTheme(savedTheme);
+      } else {
+        setTheme("dark");
       }
 
-      @keyframes openingScan {
-        0% {
-          transform: translateX(-130%);
-        }
+      if (themeToggle) {
+        themeToggle.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
 
-        55% {
-          transform: translateX(130%);
-        }
+          const isLightNow = document.body.classList.contains("light-theme");
 
-        100% {
-          transform: translateX(130%);
-        }
+          if (isLightNow) {
+            setTheme("dark");
+          } else {
+            setTheme("light");
+          }
+        });
       }
 
-      @keyframes openingSpin {
-        to {
-          transform: rotate(360deg);
-        }
+      /* MOBILE MENU */
+      if (menuBtn && nav) {
+        menuBtn.addEventListener("click", () => {
+          nav.classList.toggle("show");
+        });
       }
 
-      @keyframes openingCore {
-        from {
-          opacity: 0.45;
-          transform: scale(0.85);
-        }
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          if (nav) nav.classList.remove("show");
+        });
+      });
 
-        to {
-          opacity: 1;
-          transform: scale(1.12);
-        }
+      /* REVEAL ON SCROLL */
+      function revealOnScroll() {
+        revealItems.forEach((item) => {
+          const top = item.getBoundingClientRect().top;
+          const windowHeight = window.innerHeight;
+
+          if (top < windowHeight - 100) {
+            item.classList.add("show");
+          }
+        });
       }
 
-      @keyframes openingDots {
-        0% {
-          content: "";
+      window.addEventListener("load", revealOnScroll);
+      window.addEventListener("scroll", revealOnScroll);
+      revealOnScroll();
+
+      /* HEADER SCROLL */
+      window.addEventListener("scroll", () => {
+        if (!header) return;
+
+        const currentScroll = window.scrollY;
+
+        if (currentScroll > lastScrollY && currentScroll > 100) {
+          header.classList.add("hide");
+        } else {
+          header.classList.remove("hide");
         }
 
-        25% {
-          content: ".";
-        }
+        lastScrollY = currentScroll <= 0 ? 0 : currentScroll;
+      });
 
-        50% {
-          content: "..";
-        }
+      /* ACTIVE NAV */
+      window.addEventListener("scroll", () => {
+        let currentSection = "";
 
-        75% {
-          content: "...";
-        }
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop - 160;
+          const sectionHeight = section.offsetHeight;
 
-        100% {
-          content: "";
-        }
+          if (
+            window.scrollY >= sectionTop &&
+            window.scrollY < sectionTop + sectionHeight
+          ) {
+            currentSection = section.getAttribute("id");
+          }
+        });
+
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+
+          if (link.getAttribute("href") === `#${currentSection}`) {
+            link.classList.add("active");
+          }
+        });
+      });
+
+      /* FORM */
+      if (form) {
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          alert("Transmisi berhasil dikirim.");
+          form.reset();
+        });
       }
 
-      @keyframes openingNavIn {
-        from {
-          opacity: 0;
-          transform: translateY(-32px);
-          filter: blur(8px);
-        }
+      /* CARD TILT */
+      function addTiltEffect(cards, power = 7, lift = 10, scale = 1.025) {
+        cards.forEach((card) => {
+          card.addEventListener("mousemove", (e) => {
+            if (window.innerWidth <= 768) return;
 
-        to {
-          opacity: 1;
-          transform: translateY(0);
-          filter: blur(0);
-        }
+            const rect = card.getBoundingClientRect();
+            const mouseX = e.clientX - rect.left;
+            const mouseY = e.clientY - rect.top;
+
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            const rotateX = ((centerY - mouseY) / centerY) * power;
+            const rotateY = ((mouseX - centerX) / centerX) * power;
+
+            card.style.setProperty("--mouse-x", `${mouseX}px`);
+            card.style.setProperty("--mouse-y", `${mouseY}px`);
+
+            card.style.transform = `
+              translateY(-${lift}px)
+              scale(${scale})
+              rotateX(${rotateX}deg)
+              rotateY(${rotateY}deg)
+            `;
+          });
+
+          card.addEventListener("mouseleave", () => {
+            card.style.transform = "translateY(0) scale(1) rotateX(0deg) rotateY(0deg)";
+            card.style.setProperty("--mouse-x", "50%");
+            card.style.setProperty("--mouse-y", "50%");
+          });
+        });
       }
 
-      @keyframes openingHeroTextIn {
-        from {
-          opacity: 0;
-          transform: translateY(42px) scale(0.97);
-          filter: blur(10px);
-        }
+      addTiltEffect(infoCards, 7, 10, 1.025);
+      addTiltEffect(projectCards, 6, 10, 1.02);
 
-        to {
-          opacity: 1;
-          transform: translateY(0) scale(1);
-          filter: blur(0);
-        }
+      /* HERO CARD TILT */
+      if (heroCard) {
+        heroCard.addEventListener("mousemove", (e) => {
+          if (window.innerWidth <= 768) return;
+
+          const rect = heroCard.getBoundingClientRect();
+          const mouseX = e.clientX - rect.left;
+          const mouseY = e.clientY - rect.top;
+
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+
+          const rotateX = ((centerY - mouseY) / centerY) * 5;
+          const rotateY = ((mouseX - centerX) / centerX) * 5;
+
+          heroCard.style.animation = "none";
+          heroCard.style.transform = `
+            translateY(-8px)
+            scale(1.015)
+            rotateX(${rotateX}deg)
+            rotateY(${rotateY}deg)
+          `;
+        });
+
+        heroCard.addEventListener("mouseleave", () => {
+          heroCard.style.transform = "translateY(0) scale(1) rotateX(0deg) rotateY(0deg)";
+          heroCard.style.animation = "heroFloat 4.5s ease-in-out 1.2s infinite";
+        });
       }
 
-      @keyframes openingHeroCardIn {
-        from {
-          opacity: 0;
-          transform: translateY(46px) scale(0.94);
-          filter: blur(10px);
-        }
+      /* HERO BUTTON FLOAT */
+      heroButtons.forEach((button) => {
+        button.addEventListener("mousemove", (e) => {
+          if (window.innerWidth <= 768) return;
 
-        to {
-          opacity: 1;
-          transform: translateY(0) scale(1);
-          filter: blur(0);
-        }
+          const rect = button.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+
+          const moveX = Math.max(-14, Math.min(14, x * 0.18));
+          const moveY = Math.max(-10, Math.min(10, y * 0.28));
+
+          button.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.04)`;
+        });
+
+        button.addEventListener("mouseleave", () => {
+          button.style.transform = "translate(0px, 0px) scale(1)";
+        });
+      });
+
+      /* NAV WRAP FLOAT */
+      if (navWrap) {
+        navWrap.addEventListener("mousemove", (e) => {
+          if (window.innerWidth <= 768) return;
+
+          const rect = navWrap.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+
+          const moveX = ((x - rect.width / 2) / rect.width) * 10;
+          const moveY = ((y - rect.height / 2) / rect.height) * 6;
+
+          navWrap.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        });
+
+        navWrap.addEventListener("mouseleave", () => {
+          navWrap.style.transform = "translate(0px, 0px)";
+        });
       }
-
-      @keyframes openingSmallIn {
-        from {
-          opacity: 0;
-          transform: translateY(14px);
-          filter: blur(5px);
-        }
-
-        to {
-          opacity: 1;
-          transform: translateY(0);
-          filter: blur(0);
-        }
-      }
-
-      @keyframes openingButtonIn {
-        from {
-          opacity: 0;
-          transform: translateY(18px) scale(0.94);
-          filter: blur(6px);
-        }
-
-        to {
-          opacity: 1;
-          transform: translateY(0) scale(1);
-          filter: blur(0);
-        }
-      }
-
-      @media (max-width: 768px) {
-        .opening-screen {
-          display: none;
-        }
-
-        body.opening-lock .site-header,
-        body.opening-lock .hero-left,
-        body.opening-lock .hero-right,
-        body.opening-lock .hero-social a,
-        body.opening-lock .hero-actions .btn {
-          opacity: 1;
-          pointer-events: auto;
-        }
-      }
-    `;
-    document.head.appendChild(style);
-
-    const screen = document.createElement("div");
-    screen.className = "opening-screen";
-    screen.innerHTML = `
-      <div class="opening-box">
-        <div class="opening-ring"></div>
-        <div class="opening-logo">Fahri<span>Dev.</span></div>
-        <div class="opening-text">Initializing Portfolio</div>
-        <div class="opening-status">
-          <span class="opening-status-text">Preparing interface</span><span class="opening-dots"></span>
-        </div>
-        <div class="opening-bar">
-          <div class="opening-fill"></div>
-        </div>
-        <div class="opening-percent">0%</div>
-      </div>
-    `;
-
-    document.body.appendChild(screen);
-
-    const fill = screen.querySelector(".opening-fill");
-    const percent = screen.querySelector(".opening-percent");
-    const statusText = screen.querySelector(".opening-status-text");
-
-    const statuses = [
-      "Preparing interface",
-      "Loading visual system",
-      "Syncing animations",
-      "Activating portfolio",
-      "Launching experience"
-    ];
-
-    let value = 0;
-
-    const timer = setInterval(() => {
-      value += Math.floor(Math.random() * 10) + 7;
-
-      if (value >= 100) {
-        value = 100;
-        clearInterval(timer);
-
-        statusText.textContent = "Ready";
-
-        setTimeout(() => {
-          screen.classList.add("hide");
-          document.body.classList.remove("opening-lock");
-          document.body.classList.add("opening-ready");
-        }, 450);
-
-        setTimeout(() => {
-          screen.remove();
-        }, 1400);
-      }
-
-      const statusIndex = Math.min(
-        statuses.length - 1,
-        Math.floor((value / 100) * statuses.length)
-      );
-
-      statusText.textContent = statuses[statusIndex];
-      fill.style.width = value + "%";
-      percent.textContent = value + "%";
-    }, 130);
-  })();
-</script>
+    });
+  </script>
 </body>
 </html>
