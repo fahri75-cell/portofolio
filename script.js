@@ -12,6 +12,353 @@ document.addEventListener("DOMContentLoaded", () => {
   const infoCards = document.querySelectorAll(".info-card");
   const projectCards = document.querySelectorAll(".project-card");
   const heroButtons = document.querySelectorAll(".hero-actions .btn");
+  const heroCard = document.querySelector(".hero-card");
+
+  const liveStyle = document.createElement("style");
+  liveStyle.textContent = `
+    body {
+      opacity: 0;
+      animation: bodyFadeIn 0.6s ease forwards;
+    }
+
+    @keyframes bodyFadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .intro-loader {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(circle at top left, rgba(96, 165, 250, 0.18), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(217, 70, 239, 0.24), transparent 35%),
+        linear-gradient(135deg, #040613 0%, #10051d 50%, #1a0830 100%);
+      overflow: hidden;
+      transition:
+        opacity 0.7s ease,
+        visibility 0.7s ease;
+    }
+
+    .intro-loader.hide {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .intro-loader::before {
+      content: "";
+      position: absolute;
+      width: 380px;
+      height: 380px;
+      border-radius: 999px;
+      background: rgba(168, 85, 247, 0.22);
+      filter: blur(80px);
+      animation: loaderPulse 2s ease-in-out infinite alternate;
+    }
+
+    .intro-loader::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: radial-gradient(circle, black 0%, transparent 72%);
+      animation: gridMove 5s linear infinite;
+    }
+
+    @keyframes loaderPulse {
+      from {
+        transform: scale(0.9);
+        opacity: 0.55;
+      }
+
+      to {
+        transform: scale(1.18);
+        opacity: 1;
+      }
+    }
+
+    @keyframes gridMove {
+      from {
+        transform: translateY(0);
+      }
+
+      to {
+        transform: translateY(42px);
+      }
+    }
+
+    .loader-box {
+      position: relative;
+      z-index: 2;
+      width: min(420px, 86%);
+      padding: 32px;
+      border-radius: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.055);
+      box-shadow:
+        0 28px 70px rgba(0, 0, 0, 0.38),
+        0 0 45px rgba(168, 85, 247, 0.18);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      text-align: center;
+      transform: translateY(16px) scale(0.96);
+      animation: loaderBoxIn 0.65s ease forwards;
+    }
+
+    @keyframes loaderBoxIn {
+      to {
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .loader-logo {
+      font-size: 34px;
+      font-weight: 800;
+      color: #f8fafc;
+      margin-bottom: 10px;
+      letter-spacing: -1px;
+    }
+
+    .loader-logo span {
+      color: #a855f7;
+    }
+
+    .loader-text {
+      color: #b3a8c7;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      margin-bottom: 22px;
+      text-transform: uppercase;
+    }
+
+    .loader-bar {
+      width: 100%;
+      height: 10px;
+      padding: 2px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.06);
+      overflow: hidden;
+    }
+
+    .loader-fill {
+      width: 0%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #60a5fa, #a855f7, #d946ef);
+      box-shadow: 0 0 24px rgba(217, 70, 239, 0.55);
+      transition: width 0.18s ease;
+    }
+
+    .loader-percent {
+      margin-top: 14px;
+      font-size: 13px;
+      color: #f8fafc;
+      font-weight: 700;
+    }
+
+    .site-header {
+      opacity: 0;
+      transform: translateY(-24px);
+    }
+
+    body.page-ready .site-header {
+      opacity: 1;
+      transform: translateY(0);
+      transition:
+        opacity 0.75s ease,
+        transform 0.75s ease;
+    }
+
+    body.page-ready .site-header.hide {
+      transform: translateY(-100%);
+    }
+
+    body.page-ready .hero-left {
+      animation: heroTextLive 0.9s ease both;
+    }
+
+    body.page-ready .hero-right {
+      animation: heroCardLive 1s ease 0.15s both;
+    }
+
+    body.page-ready .section-tag {
+      animation: softGlowText 2.2s ease-in-out infinite alternate;
+    }
+
+    body.page-ready .hero-card {
+      animation:
+        heroCardLive 1s ease 0.15s both,
+        heroFloat 4.5s ease-in-out 1.2s infinite;
+    }
+
+    body.page-ready .bg-blur {
+      animation: bgBreath 5s ease-in-out infinite alternate;
+    }
+
+    @keyframes heroTextLive {
+      from {
+        opacity: 0;
+        transform: translateY(34px) scale(0.98);
+        filter: blur(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes heroCardLive {
+      from {
+        opacity: 0;
+        transform: translateY(38px) scale(0.94);
+        filter: blur(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes heroFloat {
+      0%, 100% {
+        translate: 0 0;
+      }
+
+      50% {
+        translate: 0 -12px;
+      }
+    }
+
+    @keyframes softGlowText {
+      from {
+        text-shadow: 0 0 0 rgba(168, 85, 247, 0);
+      }
+
+      to {
+        text-shadow: 0 0 18px rgba(168, 85, 247, 0.38);
+      }
+    }
+
+    @keyframes bgBreath {
+      from {
+        transform: scale(1);
+        opacity: 0.28;
+      }
+
+      to {
+        transform: scale(1.14);
+        opacity: 0.46;
+      }
+    }
+
+    .cursor-orb {
+      position: fixed;
+      width: 260px;
+      height: 260px;
+      border-radius: 999px;
+      pointer-events: none;
+      z-index: 1;
+      background: radial-gradient(circle, rgba(168, 85, 247, 0.14), transparent 65%);
+      filter: blur(12px);
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+
+    body.page-ready .cursor-orb {
+      opacity: 1;
+    }
+
+    @media (max-width: 768px) {
+      .intro-loader {
+        display: none;
+      }
+
+      body {
+        opacity: 1;
+      }
+
+      .cursor-orb {
+        display: none;
+      }
+
+      .site-header {
+        opacity: 1;
+        transform: none;
+      }
+
+      body.page-ready .hero-card {
+        animation: none;
+      }
+    }
+  `;
+  document.head.appendChild(liveStyle);
+
+  const loader = document.createElement("div");
+  loader.className = "intro-loader";
+  loader.innerHTML = `
+    <div class="loader-box">
+      <div class="loader-logo">Fahri<span>Dev.</span></div>
+      <div class="loader-text">Initializing Portfolio</div>
+      <div class="loader-bar">
+        <div class="loader-fill"></div>
+      </div>
+      <div class="loader-percent">0%</div>
+    </div>
+  `;
+  document.body.appendChild(loader);
+
+  const loaderFill = loader.querySelector(".loader-fill");
+  const loaderPercent = loader.querySelector(".loader-percent");
+
+  let loadingValue = 0;
+  const loadingTimer = setInterval(() => {
+    loadingValue += Math.floor(Math.random() * 13) + 7;
+
+    if (loadingValue >= 100) {
+      loadingValue = 100;
+      clearInterval(loadingTimer);
+
+      setTimeout(() => {
+        loader.classList.add("hide");
+        document.body.classList.add("page-ready");
+      }, 350);
+
+      setTimeout(() => {
+        loader.remove();
+      }, 1300);
+    }
+
+    loaderFill.style.width = `${loadingValue}%`;
+    loaderPercent.textContent = `${loadingValue}%`;
+  }, 120);
+
+  const cursorOrb = document.createElement("div");
+  cursorOrb.className = "cursor-orb";
+  document.body.appendChild(cursorOrb);
+
+  window.addEventListener("mousemove", (e) => {
+    cursorOrb.style.left = `${e.clientX}px`;
+    cursorOrb.style.top = `${e.clientY}px`;
+  });
 
   const words = [
     "Tech Enthusiast",
@@ -48,7 +395,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  typeEffect();
+  setTimeout(typeEffect, 900);
 
   function setTheme(theme) {
     if (theme === "light") {
@@ -197,6 +544,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
   addTiltEffect(infoCards, 7, 10, 1.025);
   addTiltEffect(projectCards, 6, 10, 1.02);
+
+  if (heroCard) {
+    heroCard.addEventListener("mousemove", (e) => {
+      if (window.innerWidth <= 768) return;
+
+      const rect = heroCard.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
+
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      const rotateX = ((centerY - mouseY) / centerY) * 5;
+      const rotateY = ((mouseX - centerX) / centerX) * 5;
+
+      heroCard.style.transform = `
+        translateY(-8px)
+        scale(1.015)
+        rotateX(${rotateX}deg)
+        rotateY(${rotateY}deg)
+      `;
+    });
+
+    heroCard.addEventListener("mouseleave", () => {
+      heroCard.style.transform = "translateY(0) scale(1) rotateX(0deg) rotateY(0deg)";
+    });
+  }
 
   heroButtons.forEach((button) => {
     button.addEventListener("mousemove", (e) => {
