@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const themeToggle = document.getElementById("theme-toggle");
   const themeIcon = document.getElementById("theme-icon");
   const infoCards = document.querySelectorAll(".info-card");
+  const projectCards = document.querySelectorAll(".project-card");
   const heroButtons = document.querySelectorAll(".hero-actions .btn");
 
   const words = [
@@ -160,37 +161,42 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  infoCards.forEach((card) => {
-    card.addEventListener("mousemove", (e) => {
-      if (window.innerWidth <= 768) return;
+  function addTiltEffect(cards, power = 7, lift = 10, scale = 1.025) {
+    cards.forEach((card) => {
+      card.addEventListener("mousemove", (e) => {
+        if (window.innerWidth <= 768) return;
 
-      const rect = card.getBoundingClientRect();
-      const mouseX = e.clientX - rect.left;
-      const mouseY = e.clientY - rect.top;
+        const rect = card.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
 
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
 
-      const rotateX = ((centerY - mouseY) / centerY) * 7;
-      const rotateY = ((mouseX - centerX) / centerX) * 7;
+        const rotateX = ((centerY - mouseY) / centerY) * power;
+        const rotateY = ((mouseX - centerX) / centerX) * power;
 
-      card.style.setProperty("--mouse-x", `${mouseX}px`);
-      card.style.setProperty("--mouse-y", `${mouseY}px`);
+        card.style.setProperty("--mouse-x", `${mouseX}px`);
+        card.style.setProperty("--mouse-y", `${mouseY}px`);
 
-      card.style.transform = `
-        translateY(-10px)
-        scale(1.025)
-        rotateX(${rotateX}deg)
-        rotateY(${rotateY}deg)
-      `;
+        card.style.transform = `
+          translateY(-${lift}px)
+          scale(${scale})
+          rotateX(${rotateX}deg)
+          rotateY(${rotateY}deg)
+        `;
+      });
+
+      card.addEventListener("mouseleave", () => {
+        card.style.transform = "translateY(0) scale(1) rotateX(0deg) rotateY(0deg)";
+        card.style.setProperty("--mouse-x", "50%");
+        card.style.setProperty("--mouse-y", "50%");
+      });
     });
+  }
 
-    card.addEventListener("mouseleave", () => {
-      card.style.transform = "translateY(0) scale(1) rotateX(0deg) rotateY(0deg)";
-      card.style.setProperty("--mouse-x", "50%");
-      card.style.setProperty("--mouse-y", "50%");
-    });
-  });
+  addTiltEffect(infoCards, 7, 10, 1.025);
+  addTiltEffect(projectCards, 6, 10, 1.02);
 
   heroButtons.forEach((button) => {
     button.addEventListener("mousemove", (e) => {
