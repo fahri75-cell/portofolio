@@ -16,21 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const liveStyle = document.createElement("style");
   liveStyle.textContent = `
-    body {
-      opacity: 0;
-      animation: bodyFadeIn 0.6s ease forwards;
-    }
-
-    @keyframes bodyFadeIn {
-      from {
-        opacity: 0;
-      }
-
-      to {
-        opacity: 1;
-      }
-    }
-
     .intro-loader {
       position: fixed;
       inset: 0;
@@ -170,105 +155,6 @@ document.addEventListener("DOMContentLoaded", () => {
       font-weight: 700;
     }
 
-    .site-header {
-      opacity: 0;
-      transform: translateY(-24px);
-    }
-
-    body.page-ready .site-header {
-      opacity: 1;
-      transform: translateY(0);
-      transition:
-        opacity 0.75s ease,
-        transform 0.75s ease;
-    }
-
-    body.page-ready .site-header.hide {
-      transform: translateY(-100%);
-    }
-
-    body.page-ready .hero-left {
-      animation: heroTextLive 0.9s ease both;
-    }
-
-    body.page-ready .hero-right {
-      animation: heroCardLive 1s ease 0.15s both;
-    }
-
-    body.page-ready .section-tag {
-      animation: softGlowText 2.2s ease-in-out infinite alternate;
-    }
-
-    body.page-ready .hero-card {
-      animation:
-        heroCardLive 1s ease 0.15s both,
-        heroFloat 4.5s ease-in-out 1.2s infinite;
-    }
-
-    body.page-ready .bg-blur {
-      animation: bgBreath 5s ease-in-out infinite alternate;
-    }
-
-    @keyframes heroTextLive {
-      from {
-        opacity: 0;
-        transform: translateY(34px) scale(0.98);
-        filter: blur(8px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-        filter: blur(0);
-      }
-    }
-
-    @keyframes heroCardLive {
-      from {
-        opacity: 0;
-        transform: translateY(38px) scale(0.94);
-        filter: blur(8px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-        filter: blur(0);
-      }
-    }
-
-    @keyframes heroFloat {
-      0%, 100% {
-        translate: 0 0;
-      }
-
-      50% {
-        translate: 0 -12px;
-      }
-    }
-
-    @keyframes softGlowText {
-      from {
-        text-shadow: 0 0 0 rgba(168, 85, 247, 0);
-      }
-
-      to {
-        text-shadow: 0 0 18px rgba(168, 85, 247, 0.38);
-      }
-    }
-
-    @keyframes bgBreath {
-      from {
-        transform: scale(1);
-        opacity: 0.28;
-      }
-
-      to {
-        transform: scale(1.14);
-        opacity: 0.46;
-      }
-    }
-
     .cursor-orb {
       position: fixed;
       width: 260px;
@@ -287,26 +173,126 @@ document.addEventListener("DOMContentLoaded", () => {
       opacity: 1;
     }
 
+    body:not(.page-ready) .site-header,
+    body:not(.page-ready) .hero-left,
+    body:not(.page-ready) .hero-right,
+    body:not(.page-ready) .hero-card {
+      animation: none !important;
+    }
+
+    body:not(.page-ready) .site-header {
+      opacity: 0 !important;
+      transform: translateY(-28px) !important;
+    }
+
+    body:not(.page-ready) .hero-left.reveal.show,
+    body:not(.page-ready) .hero-right.reveal.show {
+      opacity: 0 !important;
+      transform: translateY(34px) scale(0.98) !important;
+      filter: blur(8px) !important;
+    }
+
+    body.page-ready .site-header {
+      animation: navDropSmooth 0.85s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+    }
+
+    body.page-ready .hero-left.reveal.show {
+      animation: heroTextSmooth 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both !important;
+    }
+
+    body.page-ready .hero-right.reveal.show {
+      animation: heroCardSmooth 1.05s cubic-bezier(0.16, 1, 0.3, 1) 0.22s both !important;
+    }
+
+    body.page-ready .hero-card {
+      animation: heroFloatSmooth 4.5s ease-in-out 1.35s infinite !important;
+    }
+
+    @keyframes navDropSmooth {
+      from {
+        opacity: 0;
+        transform: translateY(-28px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes heroTextSmooth {
+      from {
+        opacity: 0;
+        transform: translateY(34px) scale(0.98);
+        filter: blur(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes heroCardSmooth {
+      from {
+        opacity: 0;
+        transform: translateY(38px) scale(0.94);
+        filter: blur(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes heroFloatSmooth {
+      0%, 100% {
+        translate: 0 0;
+      }
+
+      50% {
+        translate: 0 -12px;
+      }
+    }
+
+    .btn,
+    .info-card,
+    .project-card,
+    .hero-card,
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form button {
+      transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+
+    .reveal {
+      transition:
+        opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+
     @media (max-width: 768px) {
       .intro-loader {
         display: none;
-      }
-
-      body {
-        opacity: 1;
       }
 
       .cursor-orb {
         display: none;
       }
 
-      .site-header {
-        opacity: 1;
-        transform: none;
+      body:not(.page-ready) .site-header {
+        opacity: 1 !important;
+        transform: none !important;
       }
 
-      body.page-ready .hero-card {
-        animation: none;
+      body:not(.page-ready) .hero-left.reveal.show,
+      body:not(.page-ready) .hero-right.reveal.show {
+        opacity: 1 !important;
+        transform: translateY(0) scale(1) !important;
+        filter: blur(0) !important;
       }
     }
   `;
@@ -330,6 +316,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const loaderPercent = loader.querySelector(".loader-percent");
 
   let loadingValue = 0;
+
   const loadingTimer = setInterval(() => {
     loadingValue += Math.floor(Math.random() * 13) + 7;
 
@@ -559,6 +546,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const rotateX = ((centerY - mouseY) / centerY) * 5;
       const rotateY = ((mouseX - centerX) / centerX) * 5;
 
+      heroCard.style.animation = "none";
       heroCard.style.transform = `
         translateY(-8px)
         scale(1.015)
@@ -569,6 +557,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     heroCard.addEventListener("mouseleave", () => {
       heroCard.style.transform = "translateY(0) scale(1) rotateX(0deg) rotateY(0deg)";
+      heroCard.style.animation = "heroFloatSmooth 4.5s ease-in-out 1.2s infinite";
     });
   }
 
