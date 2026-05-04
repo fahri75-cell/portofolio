@@ -1810,6 +1810,339 @@
         });
       });
     });
-  </script>
+  <script>
+  (() => {
+    document.body.classList.add("opening-lock");
+
+    const style = document.createElement("style");
+    style.textContent = `
+      body.opening-lock .site-header,
+      body.opening-lock .hero-left,
+      body.opening-lock .hero-right,
+      body.opening-lock .hero-social a,
+      body.opening-lock .hero-actions .btn {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .opening-screen {
+        position: fixed;
+        inset: 0;
+        z-index: 999999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background:
+          radial-gradient(circle at top left, rgba(96, 165, 250, 0.18), transparent 30%),
+          radial-gradient(circle at bottom right, rgba(217, 70, 239, 0.25), transparent 35%),
+          linear-gradient(135deg, #040613 0%, #10051d 48%, #1a0830 100%);
+        overflow: hidden;
+        transition: opacity 0.75s ease, visibility 0.75s ease;
+      }
+
+      .opening-screen.hide {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      .opening-screen::before {
+        content: "";
+        position: absolute;
+        width: 430px;
+        height: 430px;
+        border-radius: 50%;
+        background: rgba(168, 85, 247, 0.24);
+        filter: blur(85px);
+        animation: openingPulse 2s ease-in-out infinite alternate;
+      }
+
+      .opening-screen::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+        background-size: 42px 42px;
+        mask-image: radial-gradient(circle, black 0%, transparent 72%);
+        animation: openingGrid 5s linear infinite;
+      }
+
+      .opening-box {
+        position: relative;
+        z-index: 2;
+        width: min(420px, 86%);
+        padding: 32px;
+        border-radius: 28px;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.055);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow:
+          0 28px 70px rgba(0, 0, 0, 0.38),
+          0 0 45px rgba(168, 85, 247, 0.18);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        animation: openingBoxIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+      }
+
+      .opening-logo {
+        font-size: 34px;
+        font-weight: 800;
+        color: #f8fafc;
+        margin-bottom: 10px;
+        letter-spacing: -1px;
+      }
+
+      .opening-logo span {
+        color: #a855f7;
+      }
+
+      .opening-text {
+        color: #b3a8c7;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 4px;
+        margin-bottom: 22px;
+        text-transform: uppercase;
+      }
+
+      .opening-bar {
+        width: 100%;
+        height: 10px;
+        padding: 2px;
+        border-radius: 999px;
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.12);
+        overflow: hidden;
+      }
+
+      .opening-fill {
+        width: 0%;
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, #60a5fa, #a855f7, #d946ef);
+        box-shadow: 0 0 24px rgba(217, 70, 239, 0.55);
+        transition: width 0.18s ease;
+      }
+
+      .opening-percent {
+        margin-top: 14px;
+        font-size: 13px;
+        color: #f8fafc;
+        font-weight: 700;
+      }
+
+      body.opening-ready .site-header {
+        pointer-events: auto;
+        animation: openingNavIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+      }
+
+      body.opening-ready .hero-left {
+        pointer-events: auto;
+        animation: openingHeroTextIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+      }
+
+      body.opening-ready .hero-right {
+        pointer-events: auto;
+        animation: openingHeroCardIn 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+      }
+
+      body.opening-ready .hero-social a {
+        pointer-events: auto;
+        animation: openingSmallIn 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+      }
+
+      body.opening-ready .hero-social a:nth-child(1) {
+        animation-delay: 0.45s;
+      }
+
+      body.opening-ready .hero-social a:nth-child(2) {
+        animation-delay: 0.55s;
+      }
+
+      body.opening-ready .hero-social a:nth-child(3) {
+        animation-delay: 0.65s;
+      }
+
+      body.opening-ready .hero-actions .btn {
+        pointer-events: auto;
+        animation: openingButtonIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+      }
+
+      body.opening-ready .hero-actions .btn:nth-child(1) {
+        animation-delay: 0.72s;
+      }
+
+      body.opening-ready .hero-actions .btn:nth-child(2) {
+        animation-delay: 0.82s;
+      }
+
+      @keyframes openingPulse {
+        from {
+          transform: scale(0.9);
+          opacity: 0.55;
+        }
+
+        to {
+          transform: scale(1.18);
+          opacity: 1;
+        }
+      }
+
+      @keyframes openingGrid {
+        from {
+          transform: translateY(0);
+        }
+
+        to {
+          transform: translateY(42px);
+        }
+      }
+
+      @keyframes openingBoxIn {
+        from {
+          opacity: 0;
+          transform: translateY(18px) scale(0.94);
+          filter: blur(8px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+          filter: blur(0);
+        }
+      }
+
+      @keyframes openingNavIn {
+        from {
+          opacity: 0;
+          transform: translateY(-32px);
+          filter: blur(8px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+          filter: blur(0);
+        }
+      }
+
+      @keyframes openingHeroTextIn {
+        from {
+          opacity: 0;
+          transform: translateY(42px) scale(0.97);
+          filter: blur(10px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+          filter: blur(0);
+        }
+      }
+
+      @keyframes openingHeroCardIn {
+        from {
+          opacity: 0;
+          transform: translateY(46px) scale(0.94);
+          filter: blur(10px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+          filter: blur(0);
+        }
+      }
+
+      @keyframes openingSmallIn {
+        from {
+          opacity: 0;
+          transform: translateY(14px);
+          filter: blur(5px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+          filter: blur(0);
+        }
+      }
+
+      @keyframes openingButtonIn {
+        from {
+          opacity: 0;
+          transform: translateY(18px) scale(0.94);
+          filter: blur(6px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+          filter: blur(0);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .opening-screen {
+          display: none;
+        }
+
+        body.opening-lock .site-header,
+        body.opening-lock .hero-left,
+        body.opening-lock .hero-right,
+        body.opening-lock .hero-social a,
+        body.opening-lock .hero-actions .btn {
+          opacity: 1;
+          pointer-events: auto;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+
+    const screen = document.createElement("div");
+    screen.className = "opening-screen";
+    screen.innerHTML = `
+      <div class="opening-box">
+        <div class="opening-logo">Fahri<span>Dev.</span></div>
+        <div class="opening-text">Initializing Portfolio</div>
+        <div class="opening-bar">
+          <div class="opening-fill"></div>
+        </div>
+        <div class="opening-percent">0%</div>
+      </div>
+    `;
+
+    document.body.appendChild(screen);
+
+    const fill = screen.querySelector(".opening-fill");
+    const percent = screen.querySelector(".opening-percent");
+
+    let value = 0;
+
+    const timer = setInterval(() => {
+      value += Math.floor(Math.random() * 12) + 8;
+
+      if (value >= 100) {
+        value = 100;
+        clearInterval(timer);
+
+        setTimeout(() => {
+          screen.classList.add("hide");
+          document.body.classList.remove("opening-lock");
+          document.body.classList.add("opening-ready");
+        }, 350);
+
+        setTimeout(() => {
+          screen.remove();
+        }, 1300);
+      }
+
+      fill.style.width = value + "%";
+      percent.textContent = value + "%";
+    }, 120);
+  })();
+</script>
 </body>
 </html>
