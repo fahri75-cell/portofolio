@@ -505,7 +505,8 @@ body.light-theme .nav-wrap {
   box-shadow: var(--shadow);
 }
 
-.info-card {
+.info-card,
+.project-card {
   position: relative;
   overflow: hidden;
   transform-style: preserve-3d;
@@ -519,13 +520,14 @@ body.light-theme .nav-wrap {
     background 0.22s ease;
 }
 
-.info-card::before {
+.info-card::before,
+.project-card::before {
   content: "";
   position: absolute;
   inset: 0;
   background: radial-gradient(
-    320px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(168, 85, 247, 0.28),
+    340px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(168, 85, 247, 0.26),
     rgba(217, 70, 239, 0.12),
     transparent 48%
   );
@@ -535,14 +537,15 @@ body.light-theme .nav-wrap {
   z-index: 0;
 }
 
-.info-card::after {
+.info-card::after,
+.project-card::after {
   content: "";
   position: absolute;
   inset: 1px;
   border-radius: 25px;
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.16),
+    rgba(255, 255, 255, 0.15),
     rgba(255, 255, 255, 0.04),
     transparent 55%
   );
@@ -552,7 +555,8 @@ body.light-theme .nav-wrap {
   z-index: 1;
 }
 
-.info-card:hover {
+.info-card:hover,
+.project-card:hover {
   border-color: rgba(192, 132, 252, 0.45);
   background: rgba(255, 255, 255, 0.075);
   box-shadow:
@@ -561,44 +565,51 @@ body.light-theme .nav-wrap {
 }
 
 .info-card:hover::before,
-.info-card:hover::after {
+.info-card:hover::after,
+.project-card:hover::before,
+.project-card:hover::after {
   opacity: 1;
 }
 
 .info-card h3,
-.info-card p {
+.info-card p,
+.project-card h3,
+.project-card p,
+.project-label,
+.project-line,
+.project-tags {
   position: relative;
   z-index: 2;
 }
 
-.info-card h3 {
+.info-card h3,
+.project-card h3 {
   transition: transform 0.22s ease, color 0.22s ease;
 }
 
-.info-card p {
+.info-card p,
+.project-card p {
   transition: transform 0.22s ease;
 }
 
-.info-card:hover h3 {
+.info-card:hover h3,
+.project-card:hover h3 {
   color: var(--primary);
   transform: translateZ(24px);
 }
 
-.info-card:hover p {
+.info-card:hover p,
+.project-card:hover p {
   transform: translateZ(16px);
 }
 
-.project-card {
-  transition:
-    transform 0.28s ease,
-    border-color 0.28s ease,
-    box-shadow 0.28s ease,
-    background 0.28s ease;
+.project-card:hover .project-line {
+  box-shadow: 0 0 22px rgba(217, 70, 239, 0.45);
 }
 
-.project-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(192, 132, 252, 0.24);
+.project-card:hover .project-tags span {
+  border-color: rgba(192, 132, 252, 0.35);
+  background: rgba(255, 255, 255, 0.11);
 }
 
 .info-card h3,
@@ -612,6 +623,7 @@ body.light-theme .nav-wrap {
   height: 6px;
   border-radius: 999px;
   margin-bottom: 18px;
+  transition: box-shadow 0.25s ease;
 }
 
 .line-one {
@@ -649,6 +661,10 @@ body.light-theme .nav-wrap {
   color: var(--text);
   border: 1px solid var(--border);
   background: var(--card-strong);
+  transition:
+    border-color 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s ease;
 }
 
 .contact-box {
@@ -799,7 +815,8 @@ body.light-theme .contact-right {
   transform: translateY(0);
 }
 
-body.light-theme .info-card:hover {
+body.light-theme .info-card:hover,
+body.light-theme .project-card:hover {
   background: rgba(255, 255, 255, 0.88);
   box-shadow:
     0 24px 55px rgba(79, 70, 120, 0.18),
@@ -926,7 +943,8 @@ body.light-theme .info-card:hover {
     font-size: 26px;
   }
 
-  .info-card:hover {
+  .info-card:hover,
+  .project-card:hover {
     transform: translateY(-7px) scale(1.01) !important;
   }
 
