@@ -246,10 +246,6 @@ body.light-theme .nav-wrap {
   padding-top: 140px;
 }
 
-hero-grid {
-  display: grid;
-}
-
 .hero-grid {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
@@ -332,6 +328,10 @@ hero-grid {
   flex-wrap: wrap;
 }
 
+.hero-actions .btn {
+  position: relative;
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -339,12 +339,18 @@ hero-grid {
   padding: 14px 24px;
   border-radius: 999px;
   font-weight: 700;
-  transition: 0.25s ease;
   border: 1px solid transparent;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
+  will-change: transform;
 }
 
 .btn:hover {
-  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(168, 85, 247, 0.22);
 }
 
 .btn-primary {
@@ -353,10 +359,24 @@ hero-grid {
   box-shadow: 0 14px 30px rgba(168, 85, 247, 0.22);
 }
 
+.btn-primary:hover {
+  box-shadow:
+    0 16px 34px rgba(168, 85, 247, 0.3),
+    0 0 28px rgba(217, 70, 239, 0.2);
+}
+
 .btn-secondary {
   color: var(--text);
   border-color: var(--border);
   background: var(--card);
+}
+
+.btn-secondary:hover {
+  border-color: rgba(192, 132, 252, 0.35);
+  background: var(--card-strong);
+  box-shadow:
+    0 16px 34px rgba(0, 0, 0, 0.22),
+    0 0 22px rgba(168, 85, 247, 0.14);
 }
 
 .hero-right {
@@ -908,5 +928,9 @@ body.light-theme .info-card:hover {
 
   .info-card:hover {
     transform: translateY(-7px) scale(1.01) !important;
+  }
+
+  .hero-actions .btn {
+    transform: none !important;
   }
 }
