@@ -7,7 +7,6 @@
 
 :root {
   --bg: #050816;
-  --bg-soft: #12071f;
   --card: rgba(255, 255, 255, 0.05);
   --card-strong: rgba(255, 255, 255, 0.09);
   --border: rgba(255, 255, 255, 0.1);
@@ -19,12 +18,11 @@
   --input: rgba(255, 255, 255, 0.04);
   --shadow: 0 24px 50px rgba(0, 0, 0, 0.32);
   --contact-left-bg: rgba(12, 6, 20, 0.82);
-  --footer-bg: rgba(16, 7, 30, 0.6);
+  --footer-bg: rgba(16, 7, 30, 0.55);
 }
 
 body.light-theme {
   --bg: #f7f8ff;
-  --bg-soft: #ffffff;
   --card: rgba(255, 255, 255, 0.72);
   --card-strong: rgba(255, 255, 255, 0.92);
   --border: rgba(24, 24, 38, 0.1);
@@ -140,7 +138,7 @@ a {
 }
 
 body.light-theme .nav-wrap {
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.82);
 }
 
 .logo {
@@ -198,8 +196,13 @@ body.light-theme .nav-wrap {
 }
 
 .theme-toggle {
+  position: relative;
+  z-index: 1002;
+  pointer-events: auto;
   width: 42px;
   height: 42px;
+  min-width: 42px;
+  min-height: 42px;
   border-radius: 999px;
   border: 1px solid var(--border);
   background: var(--card);
@@ -218,8 +221,10 @@ body.light-theme .nav-wrap {
 }
 
 .theme-icon {
+  display: inline-block;
   font-size: 17px;
   line-height: 1;
+  pointer-events: none;
 }
 
 .menu-btn {
@@ -760,6 +765,8 @@ body.light-theme .contact-right {
   .theme-toggle {
     width: 39px;
     height: 39px;
+    min-width: 39px;
+    min-height: 39px;
   }
 
   .hero {
