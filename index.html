@@ -2235,5 +2235,53 @@
       }
     });
   </script>
+  <script>
+  (() => {
+    const fotoProfil = document.querySelector(".hero-card-avatar img");
+
+    if (fotoProfil) {
+      fotoProfil.src = "fahri.jpg";
+      fotoProfil.alt = "Foto Fahri Saputra";
+    }
+
+    const style = document.createElement("style");
+
+    style.textContent = `
+      .hero-card {
+        min-height: 610px !important;
+      }
+
+      .hero-card-avatar {
+        width: 260px !important;
+        height: 330px !important;
+        border-radius: 28px !important;
+        margin: 0 auto 22px !important;
+      }
+
+      .hero-card-avatar img {
+        width: 100% !important;
+        height: 100% !important;
+        display: block !important;
+        object-fit: cover !important;
+        object-position: center 58% !important;
+        border-radius: 24px !important;
+      }
+
+      @media (max-width: 768px) {
+        .hero-card {
+          min-height: auto !important;
+        }
+
+        .hero-card-avatar {
+          width: 100% !important;
+          max-width: 270px !important;
+          height: 330px !important;
+        }
+      }
+    `;
+
+    document.head.appendChild(style);
+  })();
+</script>
 </body>
 </html>
